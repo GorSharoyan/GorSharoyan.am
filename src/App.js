@@ -4,10 +4,8 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>page contains explosive content Zen One is back </p>
-      </header>
+      <img src={logo} className="App-logo" alt="logo" />
+      <p>page contains explosive content Zen One is back 2025 </p>
     </div>
   );
 }
