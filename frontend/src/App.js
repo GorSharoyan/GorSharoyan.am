@@ -19,9 +19,9 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/" element={<Experience />} />
-        <Route path="/" element={<Hobbies />} />
-        <Route path="/" element={<Archives />} />
+        <Route path="/experince" element={<Experience />} />
+        <Route path="/hobbies" element={<Hobbies />} />
+        <Route path="/archives" element={<Archives />} />
       </Routes>
       <Footer />
     </div>
