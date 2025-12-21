@@ -1,18 +1,21 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 
-//Pages import
+// //Pages import
 import Home from "./pages/Home/Home";
 
-//library imports
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <Routes>
-      <Route to="/" element={<Home />} />
-    </Routes>
-  );
+function About() {
+  return <h1>About</h1>;
 }
 
-export default App;
+export default function App() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </div>
+  );
+}
