@@ -1,5 +1,3 @@
-// Main Fetch function
-
 async function fetchData(method, api, body = null) {
   try {
     const response = await fetch(api, {
