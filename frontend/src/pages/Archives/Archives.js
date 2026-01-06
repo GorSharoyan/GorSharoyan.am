@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { BOOKS_API } from "../../config/api";
 
 //component imports
 import CardArray from "../../components/CardArray/CardArray";
@@ -9,7 +10,7 @@ import CardArray from "../../components/CardArray/CardArray";
 //services imports
 import { getData } from "../../services/fetch.service";
 
-export default function Archives({ archivesApi }) {
+export default function Archives() {
   const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
 
   useEffect(() => {
@@ -17,8 +18,8 @@ export default function Archives({ archivesApi }) {
       const parsedData = await getData(api);
       setParsedArchivesArray(parsedData);
     }
-    parseFetchedData(archivesApi);
-  }, [archivesApi]);
+    parseFetchedData(BOOKS_API);
+  }, []);
 
   return (
     <div>
