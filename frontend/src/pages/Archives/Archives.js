@@ -2,7 +2,10 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+<<<<<<< HEAD
 import { BOOKS_API } from "../../config/api";
+=======
+>>>>>>> d4446ef8b97bcccbb571f6607113400ab4e5974f
 
 //component imports
 import CardArray from "../../components/CardArray/CardArray";
