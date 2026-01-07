@@ -1,9 +1,11 @@
+//NPM, library imports :
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
 //Creating Express.js app
 const app = express();
+
 // loading environment variables
 dotenv.config();
 
