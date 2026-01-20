@@ -2,10 +2,9 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-<<<<<<< HEAD
+
+//config imports
 import { BOOKS_API } from "../../config/api";
-=======
->>>>>>> d4446ef8b97bcccbb571f6607113400ab4e5974f
 
 //component imports
 import CardArray from "../../components/CardArray/CardArray";
@@ -19,6 +18,7 @@ export default function Archives() {
   useEffect(() => {
     async function parseFetchedData(api) {
       const parsedData = await getData(api);
+      console.log(parsedData);
       setParsedArchivesArray(parsedData);
     }
     parseFetchedData(BOOKS_API);
