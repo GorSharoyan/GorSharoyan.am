@@ -3,21 +3,22 @@ import React from "react";
 import GenericForm from "../GenericForm/GenericForm";
 import { Button } from "@mui/material";
 
-export default function LoginForm() {
+export default function LoginForm(loginSubmitFunciton) {
   const loginFormEntries = {
     login: " ",
     password: " "
   };
 
-  const testFunction = (values) => {
-    console.log("Login form works");
-    console.log(values);
-  };
+  // //Test function for debugging
+  // const testFunction = (values) => {
+  //   console.log("Login form works");
+  //   console.log(values);
+  // };
 
   return (
     <GenericForm
       formEntries={loginFormEntries}
-      onSubmitServiceFunction={testFunction}
+      onSubmitServiceFunction={loginSubmitFunciton}
       button={
         <Button variant="contained" color="primary">
           Sign in
