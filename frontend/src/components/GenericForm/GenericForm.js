@@ -1,8 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-function GenericForm(formEntries, onSubmitServiceFunction, button) {
+function GenericForm({ formEntries, onSubmitServiceFunction, button }) {
   const formFieldsArray = Object.keys(formEntries);
-
+  console.log(formEntries);
+  console.log(formFieldsArray);
   return (
     <Formik initialValues={formEntries} onSubmit={onSubmitServiceFunction}>
       {() => (
