@@ -1,6 +1,7 @@
 //library imports
 import React from "react";
 import GenericForm from "../GenericForm/GenericForm";
+import { Button } from "@mui/material";
 
 export default function LoginForm() {
   const loginFormEntries = {
@@ -17,6 +18,11 @@ export default function LoginForm() {
     <GenericForm
       formEntries={loginFormEntries}
       onSubmitServiceFunction={testFunction}
+      button={
+        <Button variant="contained" color="primary">
+          Sign in
+        </Button>
+      }
     />
   );
 }
