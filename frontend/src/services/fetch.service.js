@@ -1,4 +1,4 @@
-async function fetchData(method, api, body = null) {
+async function fetchData(method, api, body) {
   try {
     const response = await fetch(api, {
       method: method,
@@ -7,6 +7,7 @@ async function fetchData(method, api, body = null) {
       },
       body: body ? JSON.stringify(body) : null // only send body if provided
     });
+    console.log(response);
 
     if (!response.ok) {
       throw new Error("Problem with fetching data");
@@ -27,5 +28,6 @@ export function getData(api) {
 
 // POST fetch function
 export function postData(api, body) {
+  console.log("api", api);
   return fetchData("POST", api, body);
 }
