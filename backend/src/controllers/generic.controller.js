@@ -1,5 +1,4 @@
 export default function genericController(Model) {
-  // console.log(Model);
   //getAllModels Syntax
   const getAllItems = async (req, res) => {
     try {
