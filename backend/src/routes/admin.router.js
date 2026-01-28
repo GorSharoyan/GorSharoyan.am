@@ -10,4 +10,6 @@ adminRouter.post("/login", (req, res) => {
   res.json({ message: "Login received" });
 });
 
+adminRouter.post("/login", adminController);
+
 export default adminRouter;

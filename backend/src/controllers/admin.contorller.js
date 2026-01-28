@@ -3,6 +3,8 @@ import Admin from "../models/Admin.js";
 
 const adminController = async (res, req) => {
   // Data Wrapped in Tyr catch in order to catch connection errors
+  console.log("Form data received from frontend:", req.body);
+  res.json({ message: "Login received" });
   try {
     //1 Step : verification of the login and password
     // at this point we see if we have rescived any kind of requried data
