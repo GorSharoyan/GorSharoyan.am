@@ -39,9 +39,20 @@ app.use("/books", booksRouter);
 app.use("/admin", adminRouter);
 // app.use("/movies", moviesRouter);
 
+// I used this test to check how many requests i rescive from the frontend .
+//This helps to rest assure if there are no multiple requests from the frontend .
+// let postCount = 0;
+// app.use((req, res, next) => {
+//   if (req.method === "POST" && req.originalUrl === "/admin/login") {
+//     postCount += 1;
+//     console.log(`POST /admin/login count: ${postCount}`);
+//   }
+//   next();
+// });
+
 // Test Route
 app.get("/", (req, res) => {
-  res.send("Hello, backend is working!");
+  res.send("Hello, backend is working!!!!!!!!!!!");
 });
 
 //Sytnax Below is dedicated for post method testing
