@@ -6,6 +6,7 @@ import Admin from "../models/Admin.js";
 
 // Utils imports
 import { hashPassword, comparePassword } from "../utils/hash.js";
+import { generateToken, verifyToken } from "../utils/jwt.js";
 
 // Admin Controller: Handles login requests
 const adminController = async (req, res) => {
@@ -46,9 +47,17 @@ const adminController = async (req, res) => {
 
       const loginState = await comparePassword(inputPassword, admin.password);
 
-      console.log(loginState);
-
-      return res.json({ message: "Admin exists in DB" });
+      if (loginState) {
+        const adminId = { id: admin._id };
+        const sessionToken = generateToken(adminId);
+        return res.json({
+          message: "Login Successfull, JWT Rescived",
+          sessionToken,
+          admin: { id: admin._id, name: admin.name }
+        });
+      } else {
+        return res.status(401).json({ message: "Invalid Password" });
+      }
     } else {
       console.log("Admin NOT found in DB");
       return res.status(401).json({ message: "Invalid login" });
