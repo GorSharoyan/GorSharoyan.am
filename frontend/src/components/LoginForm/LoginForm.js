@@ -14,7 +14,7 @@ export default function LoginForm({ loginSubmitFunciton }) {
       submitFunction={loginSubmitFunciton}
       button={
         <Button variant="contained" color="primary" type="submit">
-          Sign in ape jan
+          Sign In
         </Button>
       }
     />

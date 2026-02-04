@@ -11,13 +11,11 @@ const SALT_ROUNDS = 10;
 // Creating basic Hashing logic , now based of an imput function creates hash
 
 export const hashPassword = async (plainPassword) => {
-  // bcrypt automatically generates a random salt internally
   const hash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
-  console.log(hash);
   return hash;
 };
 
-// gfuncitonbelow is used to compair password rescived form the forntend with the hashed one in DB
+// Function below is used to compair password rescived form the forntend wiAth the hashed one in DB
 
 export const comparePassword = async (plainPassword, hashedPassword) => {
   const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
