@@ -7,7 +7,7 @@ async function fetchData(method, api, body) {
       },
       body: body ? JSON.stringify(body) : null // only send body if provided
     });
-    console.log(response);
+    console.log("Api Response on POST request", response);
 
     if (!response.ok) {
       throw new Error("Problem with fetching data");
