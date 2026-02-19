@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 //config imports
-import { BOOKS_API } from "../../config/api";
+import { BOOKS_API, API_BASE_URL } from "../../config/api";
 
 //component imports
 import CardArray from "../../components/CardArray/CardArray";

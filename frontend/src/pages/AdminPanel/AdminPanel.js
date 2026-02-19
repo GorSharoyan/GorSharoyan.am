@@ -1,5 +1,5 @@
 // components imports
-import LoginForm from "../../components/LoginForm/LoginForm";
+import LoginForm from "../../components/Forms/LoginForm/LoginForm";
 // services imports
 import { postData } from "../../services/fetch.service";
 //config imports

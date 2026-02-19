@@ -24,6 +24,7 @@ async function fetchData(method, api, body) {
 
 // GET fetch function
 export function getData(api) {
+  console.log("get Data is here!! ");
   return fetchData("GET", api);
 }
 
