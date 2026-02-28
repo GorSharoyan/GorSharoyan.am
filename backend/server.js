@@ -2,7 +2,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-// NPM imports
+// Library imports
 import express from "express";
 import cors from "cors";
 
@@ -16,6 +16,9 @@ import adminRouter from "./src/routes/admin.router.js";
 
 // DB
 import connectToDb from "./src/config/database.js";
+
+//utils/services imports
+import generateSchemas from "./src/utils/schema-generator.js";
 
 // Creating Express.js app
 const app = express();
@@ -60,6 +63,19 @@ app.get("/", (req, res) => {
 //   console.log("Received POST /test", req.body);
 //   res.json({ message: "Test OK" });
 // });
+
+// At this point we are using services/utisl I have created
+const generateSchemasCall = async () => {
+  try {
+    await generateSchemas();
+    console.log("Schemas generated successfully");
+  } catch (err) {
+    console.error("Error generating schemas:", err);
+  }
+};
+
+// Call it
+generateSchemasCall();
 
 // Start Server
 const PORT = process.env.PORT || 5000;
