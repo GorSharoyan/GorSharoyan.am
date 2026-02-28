@@ -8,13 +8,14 @@ import GenericForm from "../GenericForm/GenericForm.js";
 //services imports
 import { postMusic } from "../../../services/music.service.js";
 
-export default function musicForm() {
+export default function MusicForm() {
   let musicFormEntries = {};
   return (
     <div>
+      This is my Music Form
       <GenericForm
         formEntries={musicFormEntries}
-        submitFunction={postMusic(values)}
+        // submitFunction={postMusic(values)}
         button={<Button />}
       />
       ;

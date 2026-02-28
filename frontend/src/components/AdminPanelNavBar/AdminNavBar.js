@@ -7,13 +7,13 @@ export default function AdminNavBar() {
     <div>
       <ul>
         <li>
-          <Link to="admindashboard/movies">Add Movies</Link>
+          <Link to="movies">Add Movies</Link>
         </li>
         <li>
-          <Link to="admindashboard/books">Add Books</Link>
+          <Link to="books">Add Books</Link>
         </li>
         <li>
-          <Link to="admindashboard/music">Add Books</Link>
+          <Link to="music">Add Books</Link>
         </li>
       </ul>
     </div>

@@ -12,9 +12,10 @@ export default function MoviesForm() {
   let movieFormEntries = {};
   return (
     <div>
+      This is my Movies Form
       <GenericForm
         formEntries={movieFormEntries}
-        submitFunction={postMovies(values)}
+        // submitFunction={postMovies(values)}
         button={<Button />}
       />
       ;

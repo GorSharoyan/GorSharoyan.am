@@ -2,6 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
+import { Outlet } from "react-router-dom"; // ✅ import here
 
 // components import
 import SideBar from "../../components/SideBar/SideBar";
@@ -26,14 +27,14 @@ export default function AdminDashboard() {
 
   const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
 
-  useEffect(() => {
-    async function parseFetchedData(api) {
-      const parsedData = await getData(api);
-      console.log("here--->", parsedData);
-      setParsedArchivesArray(parsedData);
-    }
-    parseFetchedData(BOOKS_API);
-  }, []);
+  // useEffect(() => {
+  //   async function parseFetchedData(api) {
+  //     const parsedData = await getData(api);
+  //     console.log("here--->", parsedData);
+  //     setParsedArchivesArray(parsedData);
+  //   }
+  //   parseFetchedData(BOOKS_API);
+  // }, []);
 
   return (
     <div>
@@ -46,6 +47,7 @@ export default function AdminDashboard() {
           <h4>
             This is a place for CRUD Form,thus this will be upladed to the DB in
             the backend
+            <Outlet />
           </h4>
         </Grid>
       </Grid>
