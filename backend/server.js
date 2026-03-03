@@ -8,7 +8,7 @@ import cors from "cors";
 
 // Models
 import Books from "./src/models/Books.js";
-// import Movies from "./src/models/Movies.js";
+import Movies from "./src/models/Movies.js";
 
 // Routers
 import genericRouter from "./src/routes/generic.router.js";
@@ -37,10 +37,10 @@ connectToDb();
 
 // Routes
 const booksRouter = genericRouter(Books);
-// const moviesRouter = genericRouter(Movies);
+const moviesRouter = genericRouter(Movies);
 app.use("/books", booksRouter);
 app.use("/admin", adminRouter);
-// app.use("/movies", moviesRouter);
+app.use("/movies", moviesRouter);
 
 // I used this test to check how many requests i rescive from the frontend .
 //This helps to rest assure if there are no multiple requests from the frontend .
