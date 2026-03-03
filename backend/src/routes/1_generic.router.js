@@ -5,7 +5,7 @@ import express from "express";
 import genericController from "../controllers/generic.controller.js";
 
 // GetAll data Generic Router
-const genericRouter = (model) => {
+const genericRouterGetAll = (model) => {
   const router = express.Router();
   const controller = genericController(model);
   router.get("/", controller.getAllItems);
@@ -21,4 +21,4 @@ const genericRouter = (model) => {
 //   return router;
 // };
 
-export default genericRouter;
+export default genericRouterGetAll;

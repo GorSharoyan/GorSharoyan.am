@@ -6,13 +6,12 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 
-// Models
-import Books from "./src/models/Books.js";
-import Movies from "./src/models/Movies.js";
-
-// Routers
-import genericRouter from "./src/routes/generic.router.js";
-import adminRouter from "./src/routes/admin.router.js";
+// Routes
+import booksRouter from "./src/routes/books.router.js";
+import musicRouter from "./src/routes/music.router.js";
+import moviesRouter from "./src/routes/movies.router.js";
+import adminRouter from "./src/routes/0_admin.router.js";
+import schemasRouter from "./src/routes/schemas.router.js";
 
 // DB
 import connectToDb from "./src/config/database.js";
@@ -35,12 +34,12 @@ app.use(express.json());
 // Connect to DB
 connectToDb();
 
-// Routes
-const booksRouter = genericRouter(Books);
-const moviesRouter = genericRouter(Movies);
-app.use("/books", booksRouter);
+// Calling/using the Routes
 app.use("/admin", adminRouter);
+app.use("/books", booksRouter);
 app.use("/movies", moviesRouter);
+app.use("/music", musicRouter);
+app.use("/schemas", schemasRouter);
 
 // I used this test to check how many requests i rescive from the frontend .
 //This helps to rest assure if there are no multiple requests from the frontend .
