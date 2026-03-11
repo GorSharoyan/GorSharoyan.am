@@ -11,31 +11,22 @@ import SideBar from "../../components/SideBar/SideBar";
 import { getData } from "../../services/fetch.service";
 
 //config imports
-import { API_BASE_URL, BOOKS_API } from "../../config/api";
+import { API_BASE_URL, BOOKS_API, SHCEMAS_API } from "../../config/api";
 
 export default function AdminDashboard() {
-  //   const [collections, setCollections] = useState([]);
+  const [collections, setCollections] = useState([]);
+  const testString = "Gago";
 
-  //   useEffect(() => {
-  //     async function parseFetchedData(api) {
-  //       const parsedData = await getData(api);
-  //       console.log("adminDashboards parsed data", parsedData);
-  //       setCollections(parsedData);
-  //     }
-  //     parseFetchedData(API_BASE_URL);
-  //   }, []);
+  useEffect(() => {
+    async function parseFetchedData(api) {
+      const parsedData = await getData(api);
+      console.log("adminDashboards parsed data", parsedData);
+      setCollections(parsedData);
+    }
+    parseFetchedData(SHCEMAS_API);
+  }, []);
 
-  const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
-
-  // useEffect(() => {
-  //   async function parseFetchedData(api) {
-  //     const parsedData = await getData(api);
-  //     console.log("here--->", parsedData);
-  //     setParsedArchivesArray(parsedData);
-  //   }
-  //   parseFetchedData(BOOKS_API);
-  // }, []);
-
+  // console.log("AdminDashboards", collections);
   return (
     <div>
       <h1>This is a place for Admin Dashboard</h1>
@@ -47,7 +38,7 @@ export default function AdminDashboard() {
           <h4>
             This is a place for CRUD Form,thus this will be upladed to the DB in
             the backend
-            <Outlet />
+            <Outlet context={{ collections }} />
           </h4>
         </Grid>
       </Grid>

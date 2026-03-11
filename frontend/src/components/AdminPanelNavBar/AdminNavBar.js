@@ -13,7 +13,7 @@ export default function AdminNavBar() {
           <Link to="books">Add Books</Link>
         </li>
         <li>
-          <Link to="music">Add Books</Link>
+          <Link to="music">Add Music</Link>
         </li>
       </ul>
     </div>

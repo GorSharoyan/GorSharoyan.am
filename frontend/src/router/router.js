@@ -19,11 +19,11 @@ export default function router() {
       <Route path="/experience" element={<Experience />} />
       <Route path="/hobbies" element={<Hobbies />} />
       <Route path="/archives" element={<Archives />} />
-      <Route path="/admin" element={<AdminPanel />} />|
+      <Route path="/admin" element={<AdminPanel />} />
       <Route path="/adminDashboard" element={<AdminDashboard />}>
-        <Route path="books" element={<BooksForm />} />|
-        <Route path="movies" element={<MoviesForm />} />|
-        <Route path="music" element={<MusicForm />} />|
+        <Route path="books" element={<BooksForm />} />
+        <Route path="movies" element={<MoviesForm />} />
+        <Route path="music" element={<MusicForm />} />
       </Route>
     </Routes>
   );
