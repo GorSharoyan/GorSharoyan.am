@@ -4,12 +4,15 @@ import GenericForm from "../GenericForm/GenericForm";
 import { Button } from "@mui/material";
 
 export default function LoginForm({ loginSubmitFunciton }) {
-  const loginFormEntries = {
+  const loginFormInitialValues = {
     login: " ",
     password: " "
   };
+  const loginFormEntries = [{ name: "login" }, { name: "password" }];
+
   return (
     <GenericForm
+      inputInitalValues={loginFormInitialValues}
       formEntries={loginFormEntries}
       submitFunction={loginSubmitFunciton}
       button={

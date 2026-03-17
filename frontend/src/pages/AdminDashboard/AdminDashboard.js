@@ -15,7 +15,6 @@ import { API_BASE_URL, BOOKS_API, SHCEMAS_API } from "../../config/api";
 
 export default function AdminDashboard() {
   const [collections, setCollections] = useState([]);
-  const testString = "Gago";
 
   useEffect(() => {
     async function parseFetchedData(api) {

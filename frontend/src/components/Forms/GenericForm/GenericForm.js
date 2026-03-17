@@ -1,27 +1,40 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-function GenericForm({ formEntries, submitFunction, button }) {
-  const formFieldsArray = Object.keys(formEntries);
+// utils imports
+import collectPlaceholders from "../../../utils/formUtils";
+
+function GenericForm({
+  inputInitalValues,
+  formEntries,
+  submitFunction,
+  button
+}) {
+  // debugs
+  console.log("Generic Form Form Etnries are", formEntries);
+  console.log("Generic Forms initial values are", inputInitalValues);
+
+  const genericFormEntriesArray = collectPlaceholders(formEntries);
 
   return (
     <Formik
-      initialValues={formEntries}
+      initialValues={inputInitalValues}
       onSubmit={(values) => submitFunction(values)}
     >
       <Form>
-        {formFieldsArray.map((fieldName) => (
-          <div key={fieldName}>
+        {genericFormEntriesArray.map((arrayEntry) => (
+          <div key={arrayEntry}>
+            <p>{arrayEntry}</p>
             <Field
-              id={fieldName}
-              name={fieldName}
+              id={arrayEntry}
+              name={arrayEntry}
               type={
-                fieldName.toLowerCase().includes("password")
+                arrayEntry.toLowerCase().includes("password")
                   ? "password"
                   : "text"
               }
-              placeholder={`Enter ${fieldName}`}
+              placeholder={`Enter ${arrayEntry}`}
             />
-            <ErrorMessage name={fieldName} component="div" />
+            <ErrorMessage name={arrayEntry} component="div" />
           </div>
         ))}
         {button}
