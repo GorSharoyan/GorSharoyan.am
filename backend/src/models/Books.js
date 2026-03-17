@@ -17,6 +17,10 @@ const booksSchema = new mongoose.Schema(
     year: {
       type: Number,
       required: true
+    },
+    establishment: {
+      type: String,
+      required: true
     }
   },
   { timestamps: true }

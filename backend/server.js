@@ -8,7 +8,7 @@ import cors from "cors";
 
 // Routes
 import booksRouter from "./src/routes/books.router.js";
-import musicRouter from "./src/routes/music.router.js";
+import musicsRouter from "./src/routes/musics.router.js";
 import moviesRouter from "./src/routes/movies.router.js";
 import adminRouter from "./src/routes/0_admin.router.js";
 import schemasRouter from "./src/routes/schemas.router.js";
@@ -38,7 +38,7 @@ connectToDb();
 app.use("/admin", adminRouter);
 app.use("/books", booksRouter);
 app.use("/movies", moviesRouter);
-app.use("/music", musicRouter);
+app.use("/musics", musicsRouter);
 app.use("/schemas", schemasRouter);
 
 // I used this test to check how many requests i rescive from the frontend .
