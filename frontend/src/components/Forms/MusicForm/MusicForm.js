@@ -10,7 +10,6 @@ import GenericForm from "../GenericForm/GenericForm.js";
 import { postMusic } from "../../../services/musics.service.js";
 //utils imports
 import findParsedCollection from "../../../utils/DBCollectionsUtils.js";
-import collectPlaceholders from "../../../utils/formUtils.js";
 
 export default function MusicForm() {
   const { collections } = useOutletContext();
