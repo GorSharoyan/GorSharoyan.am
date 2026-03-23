@@ -18,11 +18,13 @@ export default function AuthProvider({ children }) {
 
   //As we need state triggering event handler I guess it will be good to have useEffect here
 
-  useEffect(() => {
+  const isAuth = () => {
     if (token) {
       setAuthentificationStatus(true);
+    } else {
+      setAuthentificationStatus(false);
     }
-  }, [token]);
+  };
 
   //Step 3 Creating functions/methods that should be availabel accross the children of the parent component
   //Login Method Created
@@ -40,7 +42,7 @@ export default function AuthProvider({ children }) {
 
   //Inheritence is created thus above methods shoudl be accessible throght the custom hook
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, isAuth }}>
       {children}
     </AuthContext.Provider>
   );

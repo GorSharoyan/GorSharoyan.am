@@ -1,5 +1,7 @@
 // React Router imports
 import { Routes, Route } from "react-router-dom";
+// custom Routes imports
+import ProtectedRoute from "./ProtectedRoute";
 
 // Pages
 import Home from "../pages/Home/Home";
@@ -20,10 +22,13 @@ export default function Router() {
       <Route path="/hobbies" element={<Hobbies />} />
       <Route path="/archives" element={<Archives />} />
       <Route path="/admin" element={<AdminPanel />} />
-      <Route path="/adminDashboard" element={<AdminDashboard />}>
-        <Route path="books" element={<BooksForm />} />
-        <Route path="movies" element={<MoviesForm />} />
-        <Route path="music" element={<MusicForm />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/adminDashboard" element={<AdminDashboard />}>
+          <Route path="books" element={<BooksForm />} />
+          <Route path="movies" element={<MoviesForm />} />
+          <Route path="music" element={<MusicForm />} />
+        </Route>
       </Route>
     </Routes>
   );
