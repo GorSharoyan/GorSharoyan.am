@@ -1,5 +1,6 @@
 //library imports
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider.js";
 
 // components imports
 import LoginForm from "../../components/Forms/LoginForm/LoginForm";
@@ -10,6 +11,8 @@ import { API_BASE_URL } from "../../config/api";
 
 export default function AdminPanel() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+
   // loginFunction();
   const handleLogin = async (values) => {
     console.log("handle Login values", values);

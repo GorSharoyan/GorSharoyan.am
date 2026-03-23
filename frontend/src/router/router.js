@@ -12,7 +12,7 @@ import BooksForm from "../components/Forms/BooksForm/BooksForm";
 import MoviesForm from "../components/Forms/MoviesForm/MoviesForm";
 import MusicForm from "../components/Forms/MusicForm/MusicForm";
 
-export default function router() {
+export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
