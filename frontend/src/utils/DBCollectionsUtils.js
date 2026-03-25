@@ -6,6 +6,7 @@ const findParsedCollection = (schemaName, schemasArray) => {
       break; // stop after first match
     }
   }
+  console.log("parsed colleciton is", collectionFieldArray);
   return collectionFieldArray;
 };
 

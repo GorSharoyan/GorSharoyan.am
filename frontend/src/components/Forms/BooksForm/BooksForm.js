@@ -6,20 +6,26 @@ import { useOutletContext } from "react-router-dom";
 import GenericForm from "../GenericForm/GenericForm.js";
 
 //services imports
-import { postBooks } from "./../../../services/books.service.js";
+import postBooks from "../../../services/books.service.js";
 //utils imports
 import findParsedCollection from "../../../utils/DBCollectionsUtils.js";
 
 export default function BooksForm() {
   const { collections } = useOutletContext();
   const booksFormEntriesArray = findParsedCollection("books", collections);
+  console.log("books form Entries Array", booksFormEntriesArray);
+
+  async function handlePostData() {
+    return await postBooks;
+  }
 
   return (
     <div>
-      This is my Movies Form
+      This is my Books Form
       <GenericForm
+        inputInitalValues={booksFormEntriesArray}
         formEntries={booksFormEntriesArray}
-        // submitFunction={postMovies}
+        submitFunction={handlePostData}
         button={
           <Button variant="contained" color="primary" type="submit">
             Add Book

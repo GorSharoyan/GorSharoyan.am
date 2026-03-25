@@ -1,19 +1,20 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 // utils imports
-import collectPlaceholders from "../../../utils/formUtils";
+import collectPlaceholders, { collectSchemas } from "../../../utils/formUtils";
 
 function GenericForm({
-  inputInitalValues,
+  // inputInitalValues,
   formEntries,
   submitFunction,
   button
 }) {
+  const inputInitalValues = collectSchemas(formEntries);
+
   // debugs
   console.log("Generic Form Form Etnries are", formEntries);
-  console.log("Generic Forms initial values are", inputInitalValues);
+  console.log("Generic Form Initial Values are", inputInitalValues);
 
-  const formEntriesArray = collectPlaceholders(formEntries);
   if (!formEntries) {
     return <div>No Data</div>;
   } else {
@@ -23,18 +24,15 @@ function GenericForm({
         onSubmit={(values) => submitFunction(values)}
       >
         <Form>
-          {formEntriesArray.map((arrayEntry) => (
-            <div key={arrayEntry}>
-              <p>{arrayEntry}</p>
+          <Field name="author" placeholder="test" />
+          {formEntries.map((arrayEntry) => (
+            <div key={arrayEntry.name}>
+              <label>{arrayEntry.label}</label>
               <Field
-                id={arrayEntry}
-                name={arrayEntry}
-                type={
-                  arrayEntry.toLowerCase().includes("password")
-                    ? "password"
-                    : "text"
-                }
-                placeholder={`Enter ${arrayEntry}`}
+                id={arrayEntry.id}
+                name={arrayEntry.name}
+                type={arrayEntry.type}
+                placeholder={`Enter ${arrayEntry.name}`}
               />
               <ErrorMessage name={arrayEntry} component="div" />
             </div>
