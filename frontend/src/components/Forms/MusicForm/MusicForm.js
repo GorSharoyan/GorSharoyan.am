@@ -7,7 +7,7 @@ import { useOutletContext } from "react-router-dom";
 import GenericForm from "../GenericForm/GenericForm.js";
 
 //services imports
-import { postMusic } from "../../../services/musics.service.js";
+import postMusics from "./../../../services/musics.service.js";
 //utils imports
 import findParsedCollection from "../../../utils/DBCollectionsUtils.js";
 
@@ -15,16 +15,13 @@ export default function MusicForm() {
   const { collections } = useOutletContext();
   const musicFormEntriesArray = findParsedCollection("musics", collections);
 
-  //debug
-  console.log("Music Forms collections are", musicFormEntriesArray);
-
   return (
     <div>
       This is my Movies Form
       <GenericForm
         inputInitalValues={musicFormEntriesArray}
         formEntries={musicFormEntriesArray}
-        // submitFunction={postMovies}
+        submitFunction={postMusics}
         button={
           <Button variant="contained" color="primary" type="submit">
             Add Music

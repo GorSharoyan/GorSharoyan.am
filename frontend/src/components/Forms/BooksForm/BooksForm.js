@@ -13,11 +13,6 @@ import findParsedCollection from "../../../utils/DBCollectionsUtils.js";
 export default function BooksForm() {
   const { collections } = useOutletContext();
   const booksFormEntriesArray = findParsedCollection("books", collections);
-  console.log("books form Entries Array", booksFormEntriesArray);
-
-  async function handlePostData() {
-    return await postBooks;
-  }
 
   return (
     <div>
@@ -25,7 +20,7 @@ export default function BooksForm() {
       <GenericForm
         inputInitalValues={booksFormEntriesArray}
         formEntries={booksFormEntriesArray}
-        submitFunction={handlePostData}
+        submitFunction={postBooks}
         button={
           <Button variant="contained" color="primary" type="submit">
             Add Book

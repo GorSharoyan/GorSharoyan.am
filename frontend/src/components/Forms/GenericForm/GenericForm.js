@@ -21,7 +21,10 @@ function GenericForm({
     return (
       <Formik
         initialValues={inputInitalValues}
-        onSubmit={(values) => submitFunction(values)}
+        onSubmit={(values) =>
+          // console.log(values)}
+          submitFunction(values)
+        }
       >
         <Form>
           <Field name="author" placeholder="test" />

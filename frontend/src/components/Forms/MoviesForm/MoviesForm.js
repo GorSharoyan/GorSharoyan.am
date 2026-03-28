@@ -6,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 import GenericForm from "../GenericForm/GenericForm.js";
 
 //services imports
-import { postMovies } from "./../../../services/movies.service.js";
+import postMovies from "./../../../services/movies.service.js";
 //utils imports
 import findParsedCollection from "../../../utils/DBCollectionsUtils.js";
 
@@ -19,7 +19,7 @@ export default function MoviesForm() {
       This is my Movies Form
       <GenericForm
         formEntries={moviesFormEntriesArray}
-        // submitFunction={postMovies}
+        submitFunction={postMovies}
         button={
           <Button variant="contained" color="primary" type="submit">
             Add Movie

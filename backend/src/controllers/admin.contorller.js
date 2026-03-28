@@ -18,6 +18,7 @@ const adminController = async (req, res) => {
       ? "Data received from the frontend:"
       : "No data received from the frontend"
   );
+
   //# Step 1
   // Safely extract login and password from request body
   const rawLogin = req.body?.login ?? "";
@@ -44,7 +45,6 @@ const adminController = async (req, res) => {
 
       //Step 5
       // Comapiring input password with the one in the DB
-
       const loginState = await comparePassword(inputPassword, admin.password);
 
       if (loginState) {
