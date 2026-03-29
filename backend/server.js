@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
 });
 
 //Sytnax Below is dedicated for post method testing
-// app.post("/test", (req, res) => {
+// app.post("/books", (req, res) => {
 //   console.log("Received POST /test", req.body);
 //   res.json({ message: "Test OK" });
 // });

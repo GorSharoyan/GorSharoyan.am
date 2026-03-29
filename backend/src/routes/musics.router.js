@@ -5,8 +5,8 @@ import express from "express";
 import Music from "../models/Music.js";
 
 //generic imports
-import genericRouterGetAll from "./1_generic.router.js";
+import genericRouter from "./1_generic.router.js";
 
-const musicRouter = genericRouterGetAll(Music);
+const musicRouter = genericRouter("musics", Music);
 
 export default musicRouter;

@@ -5,8 +5,8 @@ import express from "express";
 import Schemas from "../models/Schemas.js";
 
 //generic imports
-import genericRouterGetAll from "./1_generic.router.js";
+import genericRouter from "./1_generic.router.js";
 
-const schemasRouter = genericRouterGetAll(Schemas);
+const schemasRouter = genericRouter("schemas", Schemas);
 
 export default schemasRouter;

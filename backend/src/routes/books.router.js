@@ -5,8 +5,8 @@ import express from "express";
 import Books from "../models/Books.js";
 
 //generic imports
-import genericRouterGetAll from "./1_generic.router.js";
+import genericRouter from "./1_generic.router.js";
 
-const booksRouter = genericRouterGetAll(Books);
+const booksRouter = genericRouter("books", Books);
 
 export default booksRouter;
