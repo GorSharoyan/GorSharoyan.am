@@ -5,5 +5,6 @@ import { postData } from "./fetch.service";
 import { BOOKS_API } from "../config/api";
 
 export default async function postBooks(booksBody) {
+  console.log("postBooks booksBody", booksBody);
   return await postData(BOOKS_API, booksBody);
 }

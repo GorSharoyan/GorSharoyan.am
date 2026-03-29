@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
-import { Outlet } from "react-router-dom"; // ✅ import here
+import { Outlet } from "react-router-dom";
 
 // components import
 import SideBar from "../../components/SideBar/SideBar";
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1>This is a place for Admin Dashboard</h1>
-      <Grid container direction="raw">
+      <Grid container sx={{ flexDirection: "row" }}>
         <Grid>
           <SideBar />
         </Grid>
