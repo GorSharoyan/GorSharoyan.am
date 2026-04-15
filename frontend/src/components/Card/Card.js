@@ -1,6 +1,6 @@
 import React from "react";
 export default function Card({ card }) {
-  console.log(card);
+  console.log("Card is here", card);
   return (
     <div>
       <h1>{card.author}</h1>
