@@ -12,8 +12,12 @@ import CardArray from "../../components/CardArray/CardArray";
 //services imports
 import { getData } from "../../services/fetch.service";
 
+//Custom Hooks imports
+import { useAuth } from "../../context/AuthProvider";
+
 export default function Archives() {
   const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
+  const { isAuthentificated } = useAuth();
 
   useEffect(() => {
     async function parseFetchedData(api) {
@@ -24,9 +28,16 @@ export default function Archives() {
     parseFetchedData(BOOKS_API);
   }, []);
 
-  return (
+  if (isAuthentificated) {
+    return (
+      <div>
+        <CardArray cardArray={parsedArchivesArray} />
+      </div>
+    );
+  } else {
+    return;
     <div>
       <CardArray cardArray={parsedArchivesArray} />
-    </div>
-  );
+    </div>;
+  }
 }
