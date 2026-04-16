@@ -31,13 +31,14 @@ export default function Archives() {
   if (isAuthentificated) {
     return (
       <div>
-        <CardArray cardArray={parsedArchivesArray} />
+        <CardArray cardArray={parsedArchivesArray} canEdit={true} />
       </div>
     );
   } else {
-    return;
-    <div>
-      <CardArray cardArray={parsedArchivesArray} />
-    </div>;
+    return (
+      <div>
+        <CardArray cardArray={parsedArchivesArray} canEdit={false} />
+      </div>
+    );
   }
 }
