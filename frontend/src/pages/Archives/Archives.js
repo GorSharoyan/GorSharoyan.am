@@ -1,44 +1,51 @@
 //React imports
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-//config imports
-import { BOOKS_API, API_BASE_URL } from "../../config/api";
+// config imports
+import { SHCEMAS_API } from "../../config/api";
 
-//component imports
+// component imports
 import CardArray from "../../components/CardArray/CardArray";
 
-//services imports
+// services imports
 import { getData } from "../../services/fetch.service";
 
-//Custom Hooks imports
+// custom hooks imports
 import { useAuth } from "../../context/AuthProvider";
 
+// utils imports
+import {
+  filterArchivesCollections,
+  filterCollectionNames
+} from "../../utils/DBCollectionsUtils";
+
 export default function Archives() {
+  const [parsedCollectionsNames, setParsedCollectionsNames] = useState([]);
   const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
   const { isAuthentificated } = useAuth();
 
   useEffect(() => {
     async function parseFetchedData(api) {
-      const parsedData = await getData(api);
-      console.log(parsedData);
-      setParsedArchivesArray(parsedData);
+      try {
+        const fetchedData = await getData(api);
+
+        // Exclude the "schemas" collection
+        const filteredData = filterArchivesCollections(fetchedData);
+        const collectionNames = filterCollectionNames(filteredData);
+
+        setParsedArchivesArray(filteredData);
+        setParsedCollectionsNames(collectionNames);
+      } catch (error) {
+        console.error("Failed to fetch archives data:", error);
+      }
     }
-    parseFetchedData(BOOKS_API);
+
+    parseFetchedData(SHCEMAS_API);
   }, []);
 
-  if (isAuthentificated) {
-    return (
-      <div>
-        <CardArray cardArray={parsedArchivesArray} canEdit={true} />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <CardArray cardArray={parsedArchivesArray} canEdit={false} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CardArray cardArray={parsedArchivesArray} canEdit={isAuthentificated} />
+    </div>
+  );
 }

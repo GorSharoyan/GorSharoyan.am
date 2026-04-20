@@ -23,13 +23,13 @@ export default function Router() {
       <Route path="/archives" element={<Archives />} />
       <Route path="/admin" element={<AdminPanel />} />
 
-      <Route element={<ProtectedRoute />}>
+      {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/adminDashboard" element={<AdminDashboard />}>
           <Route path="books" element={<BooksForm />} />
           <Route path="movies" element={<MoviesForm />} />
           <Route path="music" element={<MusicForm />} />
         </Route>
-      </Route>
+      {/* </Route> */}
     </Routes>
   );
 }

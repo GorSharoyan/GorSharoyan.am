@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 // components import
-import SideBar from "../../components/SideBar/SideBar";
+import AdminNavBar from "../../components/AdminPanelNavBar/AdminNavBar";
 
 //services imports
 import { getData } from "../../services/fetch.service";
@@ -13,14 +13,31 @@ import { getData } from "../../services/fetch.service";
 //config imports
 import { API_BASE_URL, BOOKS_API, SHCEMAS_API } from "../../config/api";
 
+//utils imports
+import {
+  filterArchivesCollections,
+  filterCollectionNames
+} from "../../utils/DBCollectionsUtils";
+
 export default function AdminDashboard() {
   const [collections, setCollections] = useState([]);
+  const [collectionNames, setCollectionNames] = useState([]);
 
   useEffect(() => {
     async function parseFetchedData(api) {
+      //geting the data from the backend
       const parsedData = await getData(api);
+
+      //debug just in case
       console.log("adminDashboards parsed data", parsedData);
-      setCollections(parsedData);
+
+      //filtering the data to get only the collections that we need
+      const filteredCollections = filterArchivesCollections(parsedData);
+      const collectionNames = filterCollectionNames(filteredCollections);
+
+      //Summoning the hooks
+      setCollections(filteredCollections);
+      setCollectionNames(collectionNames);
     }
     parseFetchedData(SHCEMAS_API);
   }, []);
@@ -31,7 +48,7 @@ export default function AdminDashboard() {
       <h1>This is a place for Admin Dashboard</h1>
       <Grid container sx={{ flexDirection: "row" }}>
         <Grid>
-          <SideBar />
+          <AdminNavBar collections={collectionNames} />,
         </Grid>
         <Grid>
           <h4>

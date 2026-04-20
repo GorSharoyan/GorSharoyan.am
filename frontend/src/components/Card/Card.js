@@ -8,6 +8,7 @@ import GenericForm from "../Forms/GenericForm/GenericForm.js";
 export default function Card({ card, canEdit }) {
   const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
+  console.log("Card rescived this data",card)
 
   //This function helps to reach the form that will re-redner data in the card we are willing to edit
   const handleEditClick = () => {
@@ -25,7 +26,7 @@ export default function Card({ card, canEdit }) {
 
   return (
     <div>
-      {isEditEnabled && !isEditModeEnabled && (
+       {isEditEnabled && !isEditModeEnabled && (
         <Edit onClick={handleEditClick} />
       )}
 
@@ -40,10 +41,11 @@ export default function Card({ card, canEdit }) {
         </div>
       ) : (
         <div>
-          <h1>{card.author}</h1>
+          <h1>{card.name}</h1>
           <p>{card.name}</p>
-        </div>
+        </div> 
       )}
     </div>
   );
+
 }

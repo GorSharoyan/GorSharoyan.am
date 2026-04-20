@@ -11,3 +11,15 @@ const findParsedCollection = (schemaName, schemasArray) => {
 };
 
 export default findParsedCollection;
+
+const filterArchivesCollections = (schemasOfCollections = []) => {
+  return schemasOfCollections.filter(
+    (collection) => collection.collection !== "schemas"
+  );
+};
+
+const filterCollectionNames = (collectionsArray) => {
+  const collectionNames = collectionsArray.map((item) => item.collection);
+  return collectionNames;
+};
+export { filterArchivesCollections, filterCollectionNames };
