@@ -14,13 +14,9 @@ export default function CardArray({ cardArray, canEdit }) {
 
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].name === "name") {
-          console.log("field",fields[j])
+          // console.log("field",fields[j])
           cardArrayRendered.push(
-            <Card
-              key={`${i}-${j}`}
-              card={fields[j]}
-              canEdit={canEdit}
-            />
+            <Card key={`${i}-${j}`} card={fields[j]} canEdit={canEdit} />
           );
         }
       }

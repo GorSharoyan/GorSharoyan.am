@@ -6,6 +6,7 @@ import { SHCEMAS_API } from "../../config/api";
 
 // component imports
 import CardArray from "../../components/CardArray/CardArray";
+import ArchivesNavBar from "../../components/ArchivesNavBar/ArchivesNavBar.js";
 
 // services imports
 import { getData } from "../../services/fetch.service";
@@ -35,6 +36,7 @@ export default function Archives() {
 
         setParsedArchivesArray(filteredData);
         setParsedCollectionsNames(collectionNames);
+        console.log("cllection names:", collectionNames);
       } catch (error) {
         console.error("Failed to fetch archives data:", error);
       }
@@ -42,10 +44,22 @@ export default function Archives() {
 
     parseFetchedData(SHCEMAS_API);
   }, []);
-
+  console.log("cllection names:", parsedCollectionsNames);
   return (
     <div>
-      <CardArray cardArray={parsedArchivesArray} canEdit={isAuthentificated} />
+      <div>
+        ARCHIVES NAV BAR
+        <ArchivesNavBar
+          collectionNames={parsedCollectionsNames}
+          condition={"Show"}
+        />
+      </div>
+      <div>
+        <CardArray
+          cardArray={parsedArchivesArray}
+          canEdit={isAuthentificated}
+        />
+      </div>
     </div>
   );
 }

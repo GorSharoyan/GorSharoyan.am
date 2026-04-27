@@ -2,7 +2,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function ArchivesNavBar({ collections = [], condition = "" }) {
+export default function ArchivesNavBar({
+  collectionNames = [],
+  condition = ""
+}) {
   // Determine prefix based on condition
   const prefixMap = {
     Add: "Add",
@@ -11,7 +14,7 @@ export default function ArchivesNavBar({ collections = [], condition = "" }) {
 
   const prefix = prefixMap[condition] || "";
 
-  const renderGroups = collections.map((item, index) => (
+  const renderGroups = collectionNames.map((item, index) => (
     <li key={`${item}-${index}`}>
       <Link to={item}>{prefix ? `${prefix} ${item}` : item}</Link>
     </li>
