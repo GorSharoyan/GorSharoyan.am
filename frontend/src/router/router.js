@@ -24,11 +24,11 @@ export default function Router() {
       <Route path="/admin" element={<AdminPanel />} />
 
       {/* <Route element={<ProtectedRoute />}> */}
-        <Route path="/adminDashboard" element={<AdminDashboard />}>
-          <Route path="books" element={<BooksForm />} />
-          <Route path="movies" element={<MoviesForm />} />
-          <Route path="music" element={<MusicForm />} />
-        </Route>
+      <Route path="/adminDashboard" element={<AdminDashboard />}>
+        <Route path="books" element={<BooksForm />} />
+        <Route path="movies" element={<MoviesForm />} />
+        <Route path="musics" element={<MusicForm />} />
+      </Route>
       {/* </Route> */}
     </Routes>
   );

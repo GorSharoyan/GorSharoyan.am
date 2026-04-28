@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 export default function ArchivesNavBar({
   collectionNames = [],
-  condition = ""
+  condition = " "
 }) {
   // Determine prefix based on condition
   const prefixMap = {
     Add: "Add",
-    Show: "My"
+    My: "My"
   };
 
   const prefix = prefixMap[condition] || "";
