@@ -48,10 +48,9 @@ export default function Archives() {
   return (
     <div>
       <div>
-        ARCHIVES NAV BAR
         <ArchivesNavBar
           collectionNames={parsedCollectionsNames}
-          condition={"Show"}
+          condition={"My"}
         />
       </div>
       <div>

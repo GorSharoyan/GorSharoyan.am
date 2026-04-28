@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 // components import
-import AdminNavBar from "../../components/AdminPanelNavBar/AdminNavBar";
+import ArchivesNavBar from "../../components/ArchivesNavBar/ArchivesNavBar.js";
 
 //services imports
 import { getData } from "../../services/fetch.service";
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
       <h1>This is a place for Admin Dashboard</h1>
       <Grid container sx={{ flexDirection: "row" }}>
         <Grid>
-          <AdminNavBar collections={collectionNames} />,
+          <ArchivesNavBar collectionNames={collectionNames} condition={"Add"} />
         </Grid>
         <Grid>
           <h4>

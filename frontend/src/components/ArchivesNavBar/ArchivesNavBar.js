@@ -22,7 +22,7 @@ export default function ArchivesNavBar({
 
   return (
     <nav>
-      <ul>{renderGroups}</ul>
+      <ol>{renderGroups}</ol>
     </nav>
   );
 }
