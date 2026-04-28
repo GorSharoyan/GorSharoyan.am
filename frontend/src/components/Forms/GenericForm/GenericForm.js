@@ -21,7 +21,10 @@ function GenericForm({
     return (
       <Formik
         initialValues={inputInitalValues}
-        onSubmit={(values) => submitFunction(values)}
+        onSubmit={(values, { resetForm }) => {
+          submitFunction(values);
+          resetForm();
+        }}
       >
         <Form>
           {formEntries.map((arrayEntry) => (
@@ -33,7 +36,7 @@ function GenericForm({
                 type={arrayEntry.type}
                 placeholder={`Enter ${arrayEntry.name}`}
               />
-              <ErrorMessage name={arrayEntry} component="div" />
+              <ErrorMessage name={arrayEntry.name} component="div" />
             </div>
           ))}
           {button}
