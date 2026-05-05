@@ -20,14 +20,18 @@ export default function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/experience" element={<Experience />} />
       <Route path="/hobbies" element={<Hobbies />} />
-      <Route path="/archives" element={<Archives />} />
       <Route path="/admin" element={<AdminPanel />} />
-
-      {/* <Route element={<ProtectedRoute />}> */}
-      <Route path="/adminDashboard" element={<AdminDashboard />}>
+      <Route path="/archives" element={<Archives />}>
         <Route path="books" element={<BooksForm />} />
         <Route path="movies" element={<MoviesForm />} />
         <Route path="musics" element={<MusicForm />} />
+      </Route>
+      {/*rotected route could be converted to a comment in order to gain acces to this part of code without trying to enter as admin avery time */}
+      {/* <Route element={<ProtectedRoute />}> */}
+      <Route path="/adminDashboard" element={<AdminDashboard />}>
+        <Route path="books" element={<Hobbies />} />
+        <Route path="movies" element={<Hobbies />} />
+        <Route path="musics" element={<Hobbies />} />
       </Route>
       {/* </Route> */}
     </Routes>

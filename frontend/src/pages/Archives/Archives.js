@@ -1,5 +1,6 @@
 //React imports
 import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 // config imports
 import { SHCEMAS_API } from "../../config/api";
@@ -53,6 +54,7 @@ export default function Archives() {
           condition={"My"}
         />
       </div>
+      <div>{/* <Outlet context={parsedCollectionsNames} /> */}</div>
       <div>
         <CardArray
           cardArray={parsedArchivesArray}
