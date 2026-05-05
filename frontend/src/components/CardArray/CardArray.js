@@ -9,16 +9,14 @@ export default function CardArray({ cardArray, canEdit }) {
   let cardArrayRendered = [];
 
   for (let i = 0; i < cardArray.length; i++) {
-    if (cardArray[i].collection !== "schemas") {
-      const fields = cardArray[i].fields || [];
+    const fields = cardArray[i].fields || [];
 
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].name === "name") {
-          // console.log("field",fields[j])
-          cardArrayRendered.push(
-            <Card key={`${i}-${j}`} card={fields[j]} canEdit={canEdit} />
-          );
-        }
+    for (let j = 0; j < fields.length; j++) {
+      if (fields[j].name === "name") {
+        // console.log("field",fields[j])
+        cardArrayRendered.push(
+          <Card key={`${i}-${j}`} card={fields[j]} canEdit={canEdit} />
+        );
       }
     }
   }
