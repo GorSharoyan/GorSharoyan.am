@@ -29,7 +29,7 @@ export default async function generateSchemas() {
 
     //#Step 2 Calling the DB
     //Th this point we gain final access to the Clients DB
-    const db = client.db();
+    const db = client.db("Archives");
 
     //#Step 3 reading all models from the DB
     // Read all model files
