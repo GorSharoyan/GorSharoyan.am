@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// DataBase Imports
+import { connectToArchivesDb } from "../config/database.js";
+
 const schemasSchema = new mongoose.Schema(
   {
     fields: {
@@ -10,5 +13,5 @@ const schemasSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Schemas = mongoose.model("Schemas", schemasSchema);
+const Schemas = connectToArchivesDb.model("Schemas", schemasSchema);
 export default Schemas;

@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// DataBase Imports
+import { connectToArchivesDb } from "../config/database.js";
+
 const musicSchema = new mongoose.Schema(
   {
     artist: {
@@ -22,4 +25,5 @@ const musicSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Music", musicSchema);
+const Music = connectToArchivesDb.model("Music", musicSchema);
+export default Music;

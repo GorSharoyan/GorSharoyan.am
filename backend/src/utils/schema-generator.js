@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 
 // Environemnt Variables imports
-const mongoUri = process.env.mongoDB_URI;
+const mongoDBArchives_URI = process.env.mongoDB_Archives_URI;
 
 // Load environment variables
 dotenv.config();
@@ -21,7 +21,7 @@ const modelsPath = path.join(__dirname, "../models");
 
 export default async function generateSchemas() {
   // Code below is need to to connect to the MongoDB and establish a link to it
-  const client = new MongoClient(mongoUri);
+  const client = new MongoClient(mongoDBArchives_URI);
   try {
     //#Step 1 Connecting to the DB
     //Here we are actully connected to the Db
@@ -29,7 +29,7 @@ export default async function generateSchemas() {
 
     //#Step 2 Calling the DB
     //Th this point we gain final access to the Clients DB
-    const db = client.db("Archives");
+    const db = client.db();
 
     //#Step 3 reading all models from the DB
     // Read all model files

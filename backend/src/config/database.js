@@ -7,6 +7,8 @@ dotenv.config();
 
 const mongoDB_URI = process.env.mongoDB_URI;
 
+// This function is responsible for connecting to the MongoDB database using Mongoose. It uses the connection string from the environment variables and handles any connection errors that may occur. If the connection is successful, it logs a success message; otherwise, it logs an error message.
+//As you see from the syntax this is a default connection
 export default async function connectToDb() {
   try {
     console.log("MongoDB is connected successfully! ");
@@ -14,5 +16,28 @@ export default async function connectToDb() {
     return await mongoose.connect(mongoDB_URI);
   } catch (error) {
     console.log("MongoDB is not connected");
+  }
+}
+
+// This function is responsible for connected to Archives in MongoDB
+// this is another sytnax it don't use default connection but it is a named connection
+export async function connectToArchivesDb() {
+  try {
+    console.log("MongoDB Archives is connected successfully! ");
+    console.log("This is inside mongoDB Archives", mongoose.collections);
+    return await mongoose.createConnection(process.env.mongoDB_Archives_URI);
+  } catch (error) {
+    console.log("MongoDB Archives is not connected");
+  }
+}
+
+// This funcitons is responsible for connected to Admins in MongoDB
+export async function connectToAdminsDb() {
+  try {
+    console.log("MongoDB Admins is connected successfully! ");
+    console.log("This is inside mongoDB Admins", mongoose.collections);
+    return await mongoose.createConnection(process.env.mongoDB_Admins_URI);
+  } catch (error) {
+    console.log("MongoDB Admins is not connected");
   }
 }

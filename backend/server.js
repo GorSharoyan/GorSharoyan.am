@@ -13,8 +13,10 @@ import moviesRouter from "./src/routes/movies.router.js";
 import adminRouter from "./src/routes/0_admin.router.js";
 import schemasRouter from "./src/routes/schemas.router.js";
 
-// DB
+// DB imports
 import connectToDb from "./src/config/database.js";
+import connectToArchivesDb from "./src/config/database.js";
+import connectToAdminsDb from "./src/config/database.js";
 
 //utils/services imports
 import generateSchemas from "./src/utils/schema-generator.js";
@@ -33,13 +35,15 @@ app.use(express.json());
 
 // Connect to DB
 connectToDb();
+connectToArchivesDb();
+connectToAdminsDb();
 
 // Calling/using the Routes
-app.use("/admin", adminRouter);
-app.use("/books", booksRouter);
-app.use("/movies", moviesRouter);
-app.use("/musics", musicsRouter);
-app.use("/schemas", schemasRouter);
+app.use("/Admin/admins", adminRouter);
+app.use("/Archives/books", booksRouter);
+app.use("/Archives/movies", moviesRouter);
+app.use("/Archives/musics", musicsRouter);
+app.use("/Archives/schemas", schemasRouter);
 
 // I used this test to check how many requests i rescive from the frontend .
 //This helps to rest assure if there are no multiple requests from the frontend .

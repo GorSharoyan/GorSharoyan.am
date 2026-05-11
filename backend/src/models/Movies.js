@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+// DataBase Imports
+import { connectToArchivesDb } from "../config/database.js";
 
 const moviesSchema = new mongoose.Schema(
   {
@@ -22,5 +24,5 @@ const moviesSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Movies = mongoose.model("Movies", moviesSchema);
+const Movies = connectToArchivesDb.model("Movies", moviesSchema);
 export default Movies;
