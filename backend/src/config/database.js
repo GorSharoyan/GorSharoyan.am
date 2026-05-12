@@ -19,25 +19,13 @@ export default async function connectToDb() {
   }
 }
 
-// This function is responsible for connected to Archives in MongoDB
+// This variable is responsible for connected to Archives in MongoDB
 // this is another sytnax it don't use default connection but it is a named connection
-export async function connectToArchivesDb() {
-  try {
-    console.log("MongoDB Archives is connected successfully! ");
-    console.log("This is inside mongoDB Archives", mongoose.collections);
-    return await mongoose.createConnection(process.env.mongoDB_Archives_URI);
-  } catch (error) {
-    console.log("MongoDB Archives is not connected");
-  }
-}
+export const connectToArchivesDb = mongoose.createConnection(
+  process.env.mongoDB_Archives_URI
+);
 
-// This funcitons is responsible for connected to Admins in MongoDB
-export async function connectToAdminsDb() {
-  try {
-    console.log("MongoDB Admins is connected successfully! ");
-    console.log("This is inside mongoDB Admins", mongoose.collections);
-    return await mongoose.createConnection(process.env.mongoDB_Admins_URI);
-  } catch (error) {
-    console.log("MongoDB Admins is not connected");
-  }
-}
+// This variable is responsible for connected to Admins in MongoDB
+export const connectToAdminsDb = mongoose.createConnection(
+  process.env.mongoDB_Admins_URI
+);
