@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Path to models folder
-const modelsPath = path.join(__dirname, "../models");
+const modelsPath = path.join(__dirname, "../models/Archives");
 
 export default async function generateSchemas() {
   // Code below is need to to connect to the MongoDB and establish a link to it
@@ -29,7 +29,7 @@ export default async function generateSchemas() {
 
     //#Step 2 Calling the DB
     //Th this point we gain final access to the Clients DB
-    const db = client.db();
+    const db = client.db("Archives");
 
     //#Step 3 reading all models from the DB
     // Read all model files

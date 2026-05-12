@@ -2,7 +2,7 @@
 import Express from "express";
 
 // Models Imports
-import Admin from "../models/Admin.js";
+import Admin from "../models/Admins/Admin.js";
 
 // Utils imports
 import { hashPassword, comparePassword } from "../utils/hash.js";

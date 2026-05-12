@@ -1,19 +1,18 @@
 import mongoose from "mongoose";
-
 // DataBase Imports
-import { connectToArchivesDb } from "../config/database.js";
+import { connectToArchivesDb } from "./../../config/database.js";
 
-const musicSchema = new mongoose.Schema(
+const moviesSchema = new mongoose.Schema(
   {
-    artist: {
-      type: String,
-      required: true
-    },
-    album: {
+    name: {
       type: String,
       required: true
     },
     genre: {
+      type: String,
+      required: true
+    },
+    director: {
       type: String,
       required: true
     },
@@ -25,5 +24,5 @@ const musicSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Music = connectToArchivesDb.model("Music", musicSchema);
-export default Music;
+const Movies = connectToArchivesDb.model("Movies", moviesSchema);
+export default Movies;

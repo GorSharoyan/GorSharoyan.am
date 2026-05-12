@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // DataBase Imports
-import { connectToArchivesDb } from "../config/database.js";
+import { connectToArchivesDb } from "./../../config/database.js";
 
 const booksSchema = new mongoose.Schema(
   {

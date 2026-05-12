@@ -2,7 +2,7 @@
 import express from "express";
 
 //Model import
-import Movies from "../models/Movies.js";
+import Movies from "../models/Archives/Movies.js";
 
 //generic imports
 import genericRouter from "./1_generic.router.js";
