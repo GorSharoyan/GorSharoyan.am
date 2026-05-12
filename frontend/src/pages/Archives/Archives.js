@@ -28,6 +28,7 @@ export default function Archives() {
 
   useEffect(() => {
     async function parseFetchedData(api) {
+      console.log("api in parseFetchedData is", api);
       try {
         const fetchedData = await getData(api);
 
@@ -45,7 +46,7 @@ export default function Archives() {
 
     parseFetchedData(SHCEMAS_API);
   }, []);
-  console.log("cllection names:", parsedCollectionsNames);
+  console.log("collection names:", parsedCollectionsNames);
   return (
     <div>
       <div>

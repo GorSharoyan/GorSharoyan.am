@@ -2,17 +2,18 @@
 import { getData, postData } from "./fetch.service";
 
 //API imports
-import { API_BASE_URL } from "../config/api";
+import { Admin_API } from "../config/api";
 
 export async function loginFunction(values) {
   console.log(values);
   try {
     //#Step 1 Using Fetch Post Service we access backend adn verify oru credentials
-    postData(`${API_BASE_URL}/admin/login`, values);
+    postData(`${Admin_API.BASE_URL}/admin/login`, values);
     //#Step 2 We rescive backends answer
-    const response = await postData(`${API_BASE_URL}/admin/login`, values);
+    const response = await postData(`${Admin_API}/admins/login`, values);
     //#Step 3 we get seccionToken
     const token = response.sessionToken;
+
     //#Step 4 We store Seccion token
     if (token) {
       localStorage.setItem("token", token);
