@@ -20,6 +20,7 @@ import {
   filterArchivesCollections,
   filterCollectionNames
 } from "../../utils/DBCollectionsUtils";
+import { Collections } from "@mui/icons-material";
 
 export default function Archives() {
   const [parsedCollectionsNames, setParsedCollectionsNames] = useState([]);
@@ -47,6 +48,8 @@ export default function Archives() {
     parseFetchedData(SHCEMAS_API);
   }, []);
   console.log("collection names:", parsedCollectionsNames);
+  console.log("parsed archives array:", parsedArchivesArray);
+
   return (
     <div>
       <div>
@@ -55,13 +58,20 @@ export default function Archives() {
           condition={"My"}
         />
       </div>
-      <div>{/* <Outlet context={parsedCollectionsNames} /> */}</div>
       <div>
-        <CardArray
+        <Outlet
+          context={{
+            collections: parsedArchivesArray,
+            canEdit: isAuthentificated
+          }}
+        />
+      </div>
+      {/* <div> */}
+      {/* <CardArray
           cardArray={parsedArchivesArray}
           canEdit={isAuthentificated}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -14,6 +14,9 @@ import BooksForm from "../components/Forms/BooksForm/BooksForm";
 import MoviesForm from "../components/Forms/MoviesForm/MoviesForm";
 import MusicForm from "../components/Forms/MusicForm/MusicForm";
 
+// components imports
+import CardArray from "../components/CardArray/CardArray";
+
 export default function Router() {
   return (
     <Routes>
@@ -22,16 +25,16 @@ export default function Router() {
       <Route path="/hobbies" element={<Hobbies />} />
       <Route path="/admin" element={<AdminPanel />} />
       <Route path="/archives" element={<Archives />}>
-        <Route path="books" element={<BooksForm />} />
-        <Route path="movies" element={<MoviesForm />} />
-        <Route path="musics" element={<MusicForm />} />
+        <Route path="books" element={<CardArray />} />
+        <Route path="movies" element={<CardArray />} />
+        <Route path="musics" element={<CardArray />} />
       </Route>
       {/*rotected route could be converted to a comment in order to gain acces to this part of code without trying to enter as admin avery time */}
       {/* <Route element={<ProtectedRoute />}> */}
       <Route path="/adminDashboard" element={<AdminDashboard />}>
-        <Route path="books" element={<Hobbies />} />
-        <Route path="movies" element={<Hobbies />} />
-        <Route path="musics" element={<Hobbies />} />
+        <Route path="booksForm" element={<BooksForm />} />
+        <Route path="moviesForm" element={<MoviesForm />} />
+        <Route path="musicsForm" element={<MusicForm />} />
       </Route>
       {/* </Route> */}
     </Routes>
