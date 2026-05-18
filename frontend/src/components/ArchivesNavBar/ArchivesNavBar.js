@@ -16,7 +16,9 @@ export default function ArchivesNavBar({
 
   const renderGroups = collectionNames.map((item, index) => (
     <li key={`${item}-${index}`}>
-      <Link to={item}>{prefix ? `${prefix} ${item}` : item}</Link>
+      <Link to={prefix + "-" + item}>
+        {prefix ? `${prefix} ${item}` : item}
+      </Link>
     </li>
   ));
 

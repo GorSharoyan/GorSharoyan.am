@@ -25,9 +25,9 @@ export default function Router() {
       <Route path="/hobbies" element={<Hobbies />} />
       <Route path="/admin" element={<AdminPanel />} />
       <Route path="/archives" element={<Archives />}>
-        <Route path="books" element={<CardArray />} />
-        <Route path="movies" element={<CardArray />} />
-        <Route path="musics" element={<CardArray />} />
+        <Route path="my-books" element={<CardArray />} />
+        <Route path="my-movies" element={<CardArray />} />
+        <Route path="my-musics" element={<CardArray />} />
       </Route>
       {/*rotected route could be converted to a comment in order to gain acces to this part of code without trying to enter as admin avery time */}
       {/* <Route element={<ProtectedRoute />}> */}

@@ -17,6 +17,10 @@ export default function CardArray() {
 
   let cardArrayRendered = [];
 
+  for (let i = 0; i < collections.length; i++) {
+    console.log("collection to render in loop is", collections[i]);
+  }
+
   // for (let i = 0; i < collectiontoRender.length; i++) {
   //   console.log("collection to render in loop is", collectiontoRender[i]);
   //   const names = collectiontoRender[i].name || [];
@@ -26,9 +30,9 @@ export default function CardArray() {
   //       console.log("field", name[j]);
   //       cardArrayRendered.push(
   //         <Card key={`${i}-${j}`} card={names[j]} canEdit={canEdit} />
-  //       );
-  //     }
-  //   }
+  // //       );
+  // //     }
+  // //   }
   // }
 
   console.log("card array rendered is", cardArrayRendered);

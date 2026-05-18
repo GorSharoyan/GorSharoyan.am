@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 
 // config imports
 import { SHCEMAS_API } from "../../config/api";
+import { Archives_API } from "../../config/api";
 
 // component imports
 import CardArray from "../../components/CardArray/CardArray";
