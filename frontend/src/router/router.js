@@ -31,10 +31,10 @@ export default function Router() {
       </Route>
       {/*rotected route could be converted to a comment in order to gain acces to this part of code without trying to enter as admin avery time */}
       {/* <Route element={<ProtectedRoute />}> */}
-      <Route path="/adminDashboard" element={<AdminDashboard />}>
-        <Route path="booksForm" element={<BooksForm />} />
-        <Route path="moviesForm" element={<MoviesForm />} />
-        <Route path="musicsForm" element={<MusicForm />} />
+      <Route path="/admindashboard" element={<AdminDashboard />}>
+        <Route path="add-books" element={<BooksForm />} />
+        <Route path="add-movies" element={<MoviesForm />} />
+        <Route path="add-musics" element={<MusicForm />} />
       </Route>
       {/* </Route> */}
     </Routes>

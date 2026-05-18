@@ -2,7 +2,7 @@
 import express from "express";
 
 //Model import
-import Schemas from "../models/Archives/Schemas.js";
+import Schemas from "../models/Schemas/Schemas.js";
 
 //generic imports
 import genericRouter from "./1_generic.router.js";

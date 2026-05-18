@@ -43,7 +43,7 @@ app.use("/Admin/admins", adminRouter);
 app.use("/Archives/books", booksRouter);
 app.use("/Archives/movies", moviesRouter);
 app.use("/Archives/musics", musicsRouter);
-app.use("/Archives/schemas", schemasRouter);
+app.use("/Schemas/schemas", schemasRouter);
 
 // I used this test to check how many requests i rescive from the frontend .
 //This helps to rest assure if there are no multiple requests from the frontend .
@@ -58,7 +58,7 @@ app.use("/Archives/schemas", schemasRouter);
 
 // Test Route
 app.get("/", (req, res) => {
-  res.send("Hello, backend is working!!!!!!!!!!!");
+  res.send("Hello, backend is working !!!");
 });
 
 //Sytnax Below is dedicated for post method testing

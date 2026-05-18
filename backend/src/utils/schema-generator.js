@@ -6,8 +6,9 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 
-// Environemnt Variables imports
+//Enivornment variables import
 const mongoDBArchives_URI = process.env.mongoDB_Archives_URI;
+const mongoDBSchemas_URI = process.env.mongoDB_Schemas_URI;
 
 // Load environment variables
 dotenv.config();
@@ -21,15 +22,26 @@ const modelsPath = path.join(__dirname, "../models/Archives");
 
 export default async function generateSchemas() {
   // Code below is need to to connect to the MongoDB and establish a link to it
-  const client = new MongoClient(mongoDBArchives_URI);
+
+  // Step 1 : At this point we creat clients for Archives and Schemas DBs
+
+  //Step 1.1 : At this point we connect to ArchivesDB
+  const clientArchives = new MongoClient(mongoDBArchives_URI);
+
+  //Step 1.2 : At this point we connect to SchemasDB
+  const clientSchemas = new MongoClient(mongoDBSchemas_URI);
+
   try {
-    //#Step 1 Connecting to the DB
-    //Here we are actully connected to the Db
-    await client.connect();
+    //#Step 2 Connecting to the DB
+    //Here we are actully connected to the Db: Archives and Schemas
+    await clientArchives.connect();
+    await clientSchemas.connect();
 
     //#Step 2 Calling the DB
     //Th this point we gain final access to the Clients DB
-    const db = client.db("Archives");
+
+    const dbArchives = clientArchives.db("Archives");
+    const dbSchemas = clientSchemas.db("Schemas");
 
     //#Step 3 reading all models from the DB
     // Read all model files
@@ -67,7 +79,7 @@ export default async function generateSchemas() {
       const schemaDoc = { collection: model.collection.name, fields };
 
       // Upsert into 'schemas' collection
-      await db
+      await dbSchemas
         .collection("schemas")
         .updateOne(
           { collection: model.collection.name },
@@ -75,7 +87,7 @@ export default async function generateSchemas() {
           { upsert: true }
         );
 
-      console.log(`Schema for '${model.collection.name}' synced successfully.`);
+      console.log(`Schema for '${model.collection.name}' synced successfully!`);
     }
   } catch (err) {
     console.error("Error generating schemas:", err);
