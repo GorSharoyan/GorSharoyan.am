@@ -17,39 +17,48 @@ import { getData } from "../../services/fetch.service";
 import { useAuth } from "../../context/AuthProvider";
 
 // utils imports
-import {
-  filterArchivesCollections,
-  filterCollectionNames
-} from "../../utils/DBCollectionsUtils";
+import { filterCollectionNames } from "../../utils/DBCollectionsUtils";
 import { Collections } from "@mui/icons-material";
 
 export default function Archives() {
+  // 1) this hook is dediceted for the nav bar/router in order to get all the names
+  // of the exitiing collections in the Arichves DB.
   const [parsedCollectionsNames, setParsedCollectionsNames] = useState([]);
+  // 2) this hook is dedicated for the all the collecitons inside the Archives DB.
   const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
+  // 3) this hooks is dedeicated to check the authentification status of the user.
   const { isAuthentificated } = useAuth();
+  // 4) this hook is dedicated to understand which collection we are willing to render in the card array.
+  const [selectedCollectionName, setSelectedCollectionName] = useState("books");
 
   useEffect(() => {
-    async function parseFetchedData(api) {
-      console.log("api in parseFetchedData is", api);
-      try {
-        const fetchedData = await getData(api);
+    //1) This funcion is used to get all the names of all the collections in the Archives DB
+    async function parseFetchedCollectionNames() {
+      const parsedCollectionNames = await getData(SHCEMAS_API);
 
-        // Exclude the "schemas" collection
-        const filteredData = filterArchivesCollections(fetchedData);
-        const collectionNames = filterCollectionNames(filteredData);
+      const filteredCollectionNames = filterCollectionNames(
+        parsedCollectionNames
+      );
 
-        setParsedArchivesArray(filteredData);
-        setParsedCollectionsNames(collectionNames);
-        console.log("cllection names:", collectionNames);
-      } catch (error) {
-        console.error("Failed to fetch archives data:", error);
-      }
+      setParsedCollectionsNames(filteredCollectionNames);
     }
 
-    parseFetchedData(SHCEMAS_API);
-  }, []);
+    //2) This funciton is used to parse the selected collection
+    async function parseFetchedCollections() {
+      const parsedCollections = await getData(
+        Archives_API + "/" + `${selectedCollectionName}`
+      );
+      setParsedArchivesArray(parsedCollections);
+    }
+
+    parseFetchedCollectionNames();
+    parseFetchedCollections();
+  }, [selectedCollectionName]);
+
+  //Debugging logs
   console.log("collection names:", parsedCollectionsNames);
   console.log("parsed archives array:", parsedArchivesArray);
+  console.log("selected collection name:", selectedCollectionName);
 
   return (
     <div>
@@ -57,22 +66,17 @@ export default function Archives() {
         <ArchivesNavBar
           collectionNames={parsedCollectionsNames}
           condition={"My"}
+          collectionOnSelect={setSelectedCollectionName}
         />
       </div>
       <div>
-        <Outlet
-          context={{
-            collections: parsedArchivesArray,
-            canEdit: isAuthentificated
-          }}
-        />
-      </div>
-      {/* <div> */}
-      {/* <CardArray
-          cardArray={parsedArchivesArray}
+        This is the place where sommunded collection will be rendered in the
+        card array
+        <CardArray
+          collections={parsedArchivesArray}
           canEdit={isAuthentificated}
         />
-      </div> */}
+      </div>
     </div>
   );
 }

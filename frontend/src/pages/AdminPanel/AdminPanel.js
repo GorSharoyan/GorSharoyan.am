@@ -6,8 +6,6 @@ import { useAuth } from "../../context/AuthProvider.js";
 import LoginForm from "../../components/Forms/LoginForm/LoginForm";
 // services imports
 import { loginFunction } from "../../services/auth.service.js";
-//config imports
-import { API_BASE_URL } from "../../config/api";
 
 export default function AdminPanel() {
   const navigate = useNavigate();

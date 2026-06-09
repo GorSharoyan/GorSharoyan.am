@@ -8,7 +8,10 @@ import GenericForm from "../Forms/GenericForm/GenericForm.js";
 export default function Card({ card, canEdit }) {
   const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
-  // console.log("Card rescived this data",card)
+
+  //step 1 ) Creating Titles and their Values
+  const titles = Object.keys(card);
+  const values = Object.values(card);
 
   //This function helps to reach the form that will re-redner data in the card we are willing to edit
   const handleEditClick = () => {
@@ -33,16 +36,20 @@ export default function Card({ card, canEdit }) {
       {isEditModeEnabled ? (
         <div>
           <p>Edit {card.name}</p>
+
           <GenericForm
-            // formEntries={card}
             submitFunction={() => {}}
             button={<button>Submit</button>}
           />
         </div>
       ) : (
         <div>
-          <h1>{card.name}</h1>
-          <p>{card.name}</p>
+          {titles.map((title, index) => (
+            <div key={index}>
+              <h4>{title}</h4>
+              <p>{values[index]}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>

@@ -40,7 +40,7 @@ export default function AdminDashboard() {
       setCollectionNames(collectionNames);
     }
     parseFetchedData(SHCEMAS_API);
-  }, []);
+  }, [SHCEMAS_API]);
 
   // console.log("AdminDashboards", collections);
   return (
