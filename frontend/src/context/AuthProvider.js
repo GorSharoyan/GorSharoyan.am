@@ -14,7 +14,7 @@ export default function AuthProvider({ children }) {
   //Thus it must be stored there before
   //if storing logic changes this part of code should be refactored accordingly
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [isAuthentificated, setAuthentificationStatus] = useState(false);
+  const [isAuthentificated, setAuthentificationStatus] = useState(true);
 
   //As we need state triggering event handler I guess it will be good to have useEffect here
 

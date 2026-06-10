@@ -1,0 +1,7 @@
+.generic-form-container {
+  width: 350px;      
+  padding: 5px;
+  border: 10px solid #ccc;
+  border-radius: 10px;
+  font-size: 12px; 
+}
