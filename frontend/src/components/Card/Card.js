@@ -2,6 +2,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Edit } from "@mui/icons-material";
+//UI imports
+import "./Card.css";
 
 import GenericForm from "../Forms/GenericForm/GenericForm.js";
 
@@ -28,14 +30,14 @@ export default function Card({ card, canEdit }) {
   }, [canEdit]);
 
   return (
-    <div>
+    <div className="card-container">
       {isEditEnabled && !isEditModeEnabled && (
         <Edit onClick={handleEditClick} />
       )}
 
       {isEditModeEnabled ? (
         <div>
-          <p>Edit {card.name}</p>
+          <p>Edit</p>
 
           <GenericForm
             submitFunction={() => {}}

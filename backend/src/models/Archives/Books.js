@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-// DataBase Imports
+// Database Imports
 import { connectToArchivesDb } from "./../../config/database.js";
 
 const booksSchema = new mongoose.Schema(
@@ -26,7 +26,10 @@ const booksSchema = new mongoose.Schema(
       required: true
     }
   },
-  { timestamps: true }
+  {
+    versionKey: false, // removes __v
+    timestamps: false // uncomment if you want createdAt / updatedAt
+  }
 );
 
 const Books = connectToArchivesDb.model("Books", booksSchema);

@@ -72,6 +72,14 @@ export default function Archives() {
       <div>
         This is the place where sommunded collection will be rendered in the
         card array
+        <div>
+          <h3>
+            {"Check My" +
+              " " +
+              selectedCollectionName.charAt(0).toUpperCase() +
+              selectedCollectionName.slice(1)}
+          </h3>
+        </div>
         <CardArray
           collections={parsedArchivesArray}
           canEdit={isAuthentificated}
