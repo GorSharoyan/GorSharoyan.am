@@ -17,8 +17,10 @@ import { getData } from "../../services/fetch.service";
 import { useAuth } from "../../context/AuthProvider";
 
 // utils imports
-import { filterCollectionNames } from "../../utils/DBCollectionsUtils";
-import { Collections } from "@mui/icons-material";
+import findParsedCollection, {
+  filterCollectionNames
+} from "../../utils/DBCollectionsUtils";
+import { Collections, CompareSharp } from "@mui/icons-material";
 
 export default function Archives() {
   // 1) this hook is dediceted for the nav bar/router in order to get all the names
@@ -30,17 +32,22 @@ export default function Archives() {
   const { isAuthentificated } = useAuth();
   // 4) this hook is dedicated to understand which collection we are willing to render in the card array.
   const [selectedCollectionName, setSelectedCollectionName] = useState("books");
+  // 5) this hook is dedicated to pass schema of the selected collection to the child components of this component.
+  //They will later use it as a initial values of the form thus it will be possible to create relevant forms
+  const [selectedCollectionsSchema, setSelectedCollectionsSchema] =
+    useState("");
 
   useEffect(() => {
     //1) This funcion is used to get all the names of all the collections in the Archives DB
     async function parseFetchedCollectionNames() {
-      const parsedCollectionNames = await getData(SHCEMAS_API);
-
-      const filteredCollectionNames = filterCollectionNames(
-        parsedCollectionNames
+      const parsedSchemas = await getData(SHCEMAS_API);
+      const filteredCollectionNames = filterCollectionNames(parsedSchemas);
+      const selectedCollectionsSchema = findParsedCollection(
+        selectedCollectionName,
+        parsedSchemas
       );
-
       setParsedCollectionsNames(filteredCollectionNames);
+      setSelectedCollectionsSchema(selectedCollectionsSchema);
     }
 
     //2) This funciton is used to parse the selected collection
@@ -59,6 +66,7 @@ export default function Archives() {
   console.log("collection names:", parsedCollectionsNames);
   console.log("parsed archives array:", parsedArchivesArray);
   console.log("selected collection name:", selectedCollectionName);
+  console.log("selected collections Schema:", selectedCollectionsSchema);
 
   return (
     <div>
@@ -81,6 +89,8 @@ export default function Archives() {
           </h3>
         </div>
         <CardArray
+          selectedCollectionName={selectedCollectionName}
+          selectedCollectionsSchema={selectedCollectionsSchema}
           collections={parsedArchivesArray}
           canEdit={isAuthentificated}
         />

@@ -7,13 +7,26 @@ import Card from "../Card/Card";
 //utils imports
 import findParsedCollection from "../../utils/DBCollectionsUtils.js";
 
-export default function CardArray({ collections, canEdit }) {
+export default function CardArray({
+  collections,
+  canEdit,
+  selectedCollectionName,
+  selectedCollectionsSchema
+}) {
   console.log("cardArray received this data", collections, canEdit);
 
   return (
     <div>
       {collections?.map((collection, index) => {
-        return <Card card={collection} key={index} canEdit={canEdit} />;
+        return (
+          <Card
+            selectedCollectionName={selectedCollectionName}
+            card={collection}
+            key={index}
+            canEdit={canEdit}
+            selectedCollectionsSchema={selectedCollectionsSchema}
+          />
+        );
       })}
     </div>
   );

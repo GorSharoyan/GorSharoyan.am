@@ -7,17 +7,31 @@ import { Edit } from "@mui/icons-material";
 import "./Card.css";
 
 //component imports
-import GenericForm from "../Forms/GenericForm/GenericForm.js";
-import BooksForm from "../Forms/BooksForm/BooksForm.js";
+import GenericForm from "../Forms/GenericForm/GenericForm";
 
-export default function Card({ card, canEdit }) {
+export default function Card({
+  card,
+  canEdit,
+  selectedCollectionName,
+  selectedCollectionsSchema
+}) {
   const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
 
   //step 1 ) Creating Titles and their Values
   const titles = Object.keys(card);
   const values = Object.values(card);
-  console.log("card titles are", titles);
+
+  console.log("debugging Tytles as a data type " + typeof titles);
+  console.log("Card Rescived this data about itself ", card);
+  console.log(
+    "inhereted Schema of the parent component",
+    selectedCollectionsSchema
+  );
+  console.log(
+    "card rescived the name of a parsed collection",
+    selectedCollectionName
+  );
 
   //This function helps to reach the form that will re-redner data in the card we are willing to edit
   const handleEditClick = () => {
@@ -41,13 +55,17 @@ export default function Card({ card, canEdit }) {
 
       {isEditModeEnabled ? (
         <div>
-          <p>Edit</p>
-          <BooksForm />
-          {/* <GenericForm
-            formEntries={titles}
+          <p>
+            Edit My
+            {" " +
+              selectedCollectionName.charAt(0).toUpperCase() +
+              selectedCollectionName.slice(1, -1)}
+          </p>
+          <GenericForm
+            formEntries={selectedCollectionsSchema}
             submitFunction={() => {}}
             button={<button>Submit</button>}
-          /> */}
+          />
         </div>
       ) : (
         <div>

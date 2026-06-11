@@ -6,7 +6,12 @@ import "./GenericForm.css";
 // utils imports
 import collectPlaceholders, { collectSchemas } from "../../../utils/formUtils";
 
-function GenericForm({ formEntries, submitFunction, button }) {
+function GenericForm({
+  formEntries,
+  submitFunction,
+  button,
+  inputInitialValues
+}) {
   const inputInitalValues = collectSchemas(formEntries);
 
   //Hooks for  changing the form after the button has been pushed
@@ -29,26 +34,32 @@ function GenericForm({ formEntries, submitFunction, button }) {
     return (
       <div className="generic-form-container">
         <Formik
-          initialValues={formEntries}
+          initialValues={inputInitalValues}
           onSubmit={(values, { resetForm }) => {
             submitFunction(values);
             resetForm();
           }}
         >
           <Form>
-            {formEntries.map((arrayEntry) => (
-              <div key={arrayEntry.name}>
-                <label>{arrayEntry.label}</label>
-                <Field
-                  id={arrayEntry.id}
-                  name={arrayEntry.name}
-                  type={arrayEntry.type}
-                  placeholder={`Enter ${arrayEntry.name}`}
-                />
-                <ErrorMessage name={arrayEntry.name} component="div" />
-              </div>
-            ))}
-            {button}
+            {formEntries.map(
+              (arrayEntry) => (
+                console.log("array entry is", arrayEntry),
+                console.log("array entry name is", arrayEntry.name),
+                (
+                  <div key={arrayEntry.name}>
+                    <label>{arrayEntry.label}</label>
+                    <Field
+                      id={arrayEntry.id}
+                      name={arrayEntry.name}
+                      type={arrayEntry.type}
+                      placeholder={`Enter ${arrayEntry.name}`}
+                    />
+                    {/* <ErrorMessage name={arrayEntry.name} component="div" /> */}
+                  </div>
+                )
+              )
+            )}
+            <div>{button}</div>
           </Form>
         </Formik>
       </div>
