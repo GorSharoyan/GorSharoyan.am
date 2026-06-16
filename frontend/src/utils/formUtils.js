@@ -24,3 +24,14 @@ export function collectSchemas(inputArray) {
   console.log("collectedSchemas are", schemas);
   return schemas;
 }
+
+export function createFormsInitialValuesObject(input) {
+  console.log("Object Creator Functions input is", input);
+  const result = {};
+
+  input.forEach((item) => {
+    result[item.name] = "";
+  });
+  console.log("Output Result Object is ", result);
+  return result;
+}

@@ -12,21 +12,9 @@ function GenericForm({
   button,
   inputInitialValues
 }) {
-  const inputInitalValues = collectSchemas(formEntries);
-
-  //Hooks for  changing the form after the button has been pushed
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
   // debugs
   console.log("Generic Form Form Etnries are", formEntries);
-  console.log("Generic Form Initial Values are", inputInitalValues);
-
-  useEffect(() => {
-    if (isSubmitted) {
-      // Reset the form or perform any other actions after submission
-      setIsSubmitted(false); // Reset the submission state
-    }
-  }, [isSubmitted]);
+  console.log("Generic Form Initial Values are", inputInitialValues);
 
   if (!formEntries) {
     return <div>No Data</div>;
@@ -34,9 +22,25 @@ function GenericForm({
     return (
       <div className="generic-form-container">
         <Formik
-          initialValues={inputInitalValues}
-          onSubmit={(values, { resetForm }) => {
-            submitFunction(values);
+          // this part of formik is responsilbe for initial values of the fomrm
+          // formik should rescieve and object with all the names that actually should carry the inputs values
+          initialValues={inputInitialValues}
+          enableReinitialize={true}
+          // this part of formik is actually responsilbe for the validaton and errors.
+          // if there is no errors object selected errors will not be rendered in form if something is missing
+          validate={(values) => {
+            const errors = {};
+
+            formEntries.forEach((field) => {
+              if (!values[field.name]) {
+                errors[field.name] = `${field.name} is required`;
+              }
+            });
+
+            return errors;
+          }}
+          onSubmit={async (values, { resetForm }) => {
+            await submitFunction(values);
             resetForm();
           }}
         >
@@ -54,7 +58,7 @@ function GenericForm({
                       type={arrayEntry.type}
                       placeholder={`Enter ${arrayEntry.name}`}
                     />
-                    {/* <ErrorMessage name={arrayEntry.name} component="div" /> */}
+                    <ErrorMessage name={arrayEntry.name} component="div" />
                   </div>
                 )
               )
@@ -67,3 +71,5 @@ function GenericForm({
   }
 }
 export default GenericForm;
+// submitFunction(values);
+// resetForm();

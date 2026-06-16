@@ -62,9 +62,10 @@ export default function Card({
               selectedCollectionName.slice(1, -1)}
           </p>
           <GenericForm
+            inputInitialValues={card}
             formEntries={selectedCollectionsSchema}
             submitFunction={() => {}}
-            button={<button>Submit</button>}
+            button={<button type="submit">Submit</button>}
           />
         </div>
       ) : (

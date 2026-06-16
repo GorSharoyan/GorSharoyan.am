@@ -8,18 +8,23 @@ import GenericForm from "../GenericForm/GenericForm.js";
 
 //services imports
 import postMusics from "./../../../services/musics.service.js";
+
 //utils imports
 import findParsedCollection from "../../../utils/DBCollectionsUtils.js";
+import { createFormsInitialValuesObject } from "../../../utils/formUtils.js";
 
 export default function MusicForm() {
   const { collections } = useOutletContext();
   const musicFormEntriesArray = findParsedCollection("musics", collections);
+  const musicFormInitialValues = createFormsInitialValuesObject(
+    musicFormEntriesArray
+  );
 
   return (
     <div>
       This is my Movies Form
       <GenericForm
-        inputInitalValues={musicFormEntriesArray}
+        inputInitalValues={musicFormInitialValues}
         formEntries={musicFormEntriesArray}
         submitFunction={postMusics}
         button={
