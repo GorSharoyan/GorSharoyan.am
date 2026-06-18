@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function ArchivesNavBar({
   collectionNames = [],
   condition = " ",
-  collectionOnSelect = () => {}
+  collectionOnSelect
 }) {
   // Determine prefix based on condition
   const prefixMap = {
@@ -19,26 +19,22 @@ export default function ArchivesNavBar({
   /**
    * This section of code is dedicated to navigating between two core concepts
    * of navigation in React.js.
-   *
+    Case 1 :
    * One approach is used for rendering child elements within the Archives page,
    * where state-based navigation is applied.
-   *
    * In this case, we rely on state management rather than routing mechanisms.
    * This is referred to as UI-based navigation, leveraging a parent-child
    * relationship based on the selected collection. A useEffect in the Archives
    * page will fetch data from the database when a collection is selected.
-   *
    * In this scenario, we do not use useOutlet or similar routing tools; instead,
    * we rely on React’s component composition and state inheritance patterns.
-   *
+    Case 2 : 
    * The second approach uses React Router (e.g., useOutlet and Link components)
    * to enable navigation across the application. This method relies on routing
    * rather than state inheritance.
-   *
    * In this case, I currently have some non-generic and hardcoded data, since
    * each collection requires an individual form component. However, this approach
    * provides the advantage of structured navigation with secure routes.
-   *
    * Overall, I aim to use both approaches in parallel to gain experience with
    * each navigation pattern and understand their trade-offs in real-world usage.
    */

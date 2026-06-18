@@ -37,6 +37,9 @@ export default function Archives() {
   //They will later use it as a initial values of the form thus it will be possible to create relevant forms
   const [selectedCollectionsSchema, setSelectedCollectionsSchema] =
     useState("");
+  // 6) this hook is dedicated to create an array that is already filetered according to searchBars results and is ready for render
+  const [filteredParsedArchivesArray, setfilteredParsedArchivesArray] =
+    useState(parsedArchivesArray);
 
   useEffect(() => {
     //1) This funcion is used to get all the names of all the collections in the Archives DB
@@ -68,6 +71,7 @@ export default function Archives() {
   console.log("parsed archives array:", parsedArchivesArray);
   console.log("selected collection name:", selectedCollectionName);
   console.log("selected collections Schema:", selectedCollectionsSchema);
+  // console.log("search result is here:", filteredParsedArchivesArray);
 
   return (
     <div>
@@ -82,12 +86,13 @@ export default function Archives() {
       <div>
         <SearchBar
           arraytoFilterName={selectedCollectionName}
-          arraytoFilter={[]}
+          arraytoFilter={parsedArchivesArray}
+          filteredArray={setfilteredParsedArchivesArray}
         />
       </div>
 
       <div>
-        {parsedArchivesArray.length > 0 ? (
+        {filteredParsedArchivesArray.length > 0 ? (
           <div>
             <h3>
               {`Check My ${selectedCollectionName
@@ -98,7 +103,7 @@ export default function Archives() {
             <CardArray
               selectedCollectionName={selectedCollectionName}
               selectedCollectionsSchema={selectedCollectionsSchema}
-              collections={parsedArchivesArray}
+              collections={filteredParsedArchivesArray}
               canEdit={isAuthentificated}
             />
           </div>
@@ -111,7 +116,7 @@ export default function Archives() {
             </h3>
 
             <div>
-              Add Books HereMust be the form to add additional books Most
+              Add Books Here must be the form to add additional books Most
               probably i will refactor forms Archives DB and it will appear here
             </div>
           </div>
