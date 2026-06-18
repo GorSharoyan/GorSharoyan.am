@@ -9,6 +9,7 @@ import { Archives_API } from "../../config/api";
 // component imports
 import CardArray from "../../components/CardArray/CardArray";
 import ArchivesNavBar from "../../components/ArchivesNavBar/ArchivesNavBar.js";
+import SearchBar from "../../components/SearchBar/SearchBar.js";
 
 // services imports
 import { getData } from "../../services/fetch.service";
@@ -77,23 +78,44 @@ export default function Archives() {
           collectionOnSelect={setSelectedCollectionName}
         />
       </div>
+
       <div>
-        This is the place where sommunded collection will be rendered in the
-        card array
-        <div>
-          <h3>
-            {"Check My" +
-              " " +
-              selectedCollectionName.charAt(0).toUpperCase() +
-              selectedCollectionName.slice(1)}
-          </h3>
-        </div>
-        <CardArray
-          selectedCollectionName={selectedCollectionName}
-          selectedCollectionsSchema={selectedCollectionsSchema}
-          collections={parsedArchivesArray}
-          canEdit={isAuthentificated}
+        <SearchBar
+          arraytoFilterName={selectedCollectionName}
+          arraytoFilter={[]}
         />
+      </div>
+
+      <div>
+        {parsedArchivesArray.length > 0 ? (
+          <div>
+            <h3>
+              {`Check My ${selectedCollectionName
+                .charAt(0)
+                .toUpperCase()}${selectedCollectionName.slice(1)}`}
+            </h3>
+
+            <CardArray
+              selectedCollectionName={selectedCollectionName}
+              selectedCollectionsSchema={selectedCollectionsSchema}
+              collections={parsedArchivesArray}
+              canEdit={isAuthentificated}
+            />
+          </div>
+        ) : (
+          <div>
+            <h3>
+              {`No ${selectedCollectionName
+                .charAt(0)
+                .toUpperCase()}${selectedCollectionName.slice(1)} to display`}
+            </h3>
+
+            <div>
+              Add Books HereMust be the form to add additional books Most
+              probably i will refactor forms Archives DB and it will appear here
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
