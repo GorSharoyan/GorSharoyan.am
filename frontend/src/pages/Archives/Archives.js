@@ -6,6 +6,9 @@ import { Outlet } from "react-router-dom";
 import { SHCEMAS_API } from "../../config/api";
 import { Archives_API } from "../../config/api";
 
+//UI imports
+import Pagination from "@mui/material/Pagination";
+
 // component imports
 import CardArray from "../../components/CardArray/CardArray";
 import ArchivesNavBar from "../../components/ArchivesNavBar/ArchivesNavBar.js";
@@ -104,6 +107,9 @@ export default function Archives() {
               collections={filteredParsedArchivesArray}
               canEdit={isAuthentificated}
             />
+            <div>
+              <Pagination count={10} />
+            </div>
           </div>
         ) : (
           <div>
