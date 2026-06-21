@@ -58,7 +58,7 @@ app.use("/Schemas/schemas", schemasRouter);
 
 // Test Route
 app.get("/", (req, res) => {
-  res.send("Hello, backend is working !!!");
+  res.send("Hello, backend is working AF  !!!");
 });
 
 //Sytnax Below is dedicated for post method testing

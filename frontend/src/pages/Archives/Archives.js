@@ -39,7 +39,7 @@ export default function Archives() {
     useState("");
   // 6) this hook is dedicated to create an array that is already filetered according to searchBars results and is ready for render
   const [filteredParsedArchivesArray, setfilteredParsedArchivesArray] =
-    useState(parsedArchivesArray);
+    useState([]);
 
   useEffect(() => {
     //1) This funcion is used to get all the names of all the collections in the Archives DB
@@ -60,6 +60,7 @@ export default function Archives() {
         Archives_API + "/" + `${selectedCollectionName}`
       );
       setParsedArchivesArray(parsedCollections);
+      setfilteredParsedArchivesArray(parsedCollections);
     }
 
     parseFetchedCollectionNames();
@@ -82,7 +83,6 @@ export default function Archives() {
           collectionOnSelect={setSelectedCollectionName}
         />
       </div>
-
       <div>
         <SearchBar
           arraytoFilterName={selectedCollectionName}
@@ -90,7 +90,6 @@ export default function Archives() {
           filteredArray={setfilteredParsedArchivesArray}
         />
       </div>
-
       <div>
         {filteredParsedArchivesArray.length > 0 ? (
           <div>
@@ -99,7 +98,6 @@ export default function Archives() {
                 .charAt(0)
                 .toUpperCase()}${selectedCollectionName.slice(1)}`}
             </h3>
-
             <CardArray
               selectedCollectionName={selectedCollectionName}
               selectedCollectionsSchema={selectedCollectionsSchema}

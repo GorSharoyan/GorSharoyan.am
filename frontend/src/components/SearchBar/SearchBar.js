@@ -35,10 +35,10 @@ export default function SearchBar({
 
     if (rescivedValue === []) {
       filteredArray(arraytoFilter);
-      searchResult("false");
+      setSearchResult("false");
     } else {
       filteredArray(rescivedValue);
-      searchResult("true");
+      setSearchResult("true");
     }
   };
 
