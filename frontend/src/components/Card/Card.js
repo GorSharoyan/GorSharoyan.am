@@ -3,17 +3,24 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Edit } from "@mui/icons-material";
 
+//configs import
+import { Archives_API } from "../../config/api";
+
 //UI imports
 import "./Card.css";
 
 //component imports
 import GenericForm from "../Forms/GenericForm/GenericForm";
 
+//service import
+import { editData } from "../../services/fetch.service";
+
 export default function Card({
   card,
   canEdit,
   selectedCollectionName,
-  selectedCollectionsSchema
+  selectedCollectionsSchema,
+  cardId
 }) {
   const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
@@ -22,16 +29,15 @@ export default function Card({
   const titles = Object.keys(card);
   const values = Object.values(card);
 
-  console.log("debugging Tytles as a data type " + typeof titles);
+  const editURL = Archives_API + "/" + selectedCollectionName + "/" + cardId;
+
+  //Debuggin logs :
+
   console.log("Card Rescived this data about itself ", card);
-  console.log(
-    "inhereted Schema of the parent component",
-    selectedCollectionsSchema
-  );
-  console.log(
-    "card rescived the name of a parsed collection",
-    selectedCollectionName
-  );
+  console.log("Schema of the parent component", selectedCollectionsSchema);
+  console.log("Card rescived the name of a collection", selectedCollectionName);
+  console.log("Card ID is", cardId);
+  console.log("URl to reach DB in case of Edit is", editURL);
 
   //This function helps to reach the form that will re-redner data in the card we are willing to edit
   const handleEditClick = () => {
@@ -64,7 +70,9 @@ export default function Card({
           <GenericForm
             inputInitialValues={card}
             formEntries={selectedCollectionsSchema}
-            submitFunction={() => {}}
+            submitFunction={(values) => {
+              editData(editURL, values);
+            }}
             button={<button type="submit">Submit</button>}
           />
         </div>

@@ -123,13 +123,6 @@ export default function Archives() {
           </div>
         )}
       </div>
-      <div>
-        {/* <Pagination
-          count={5}
-          page={page}
-          onChange={(event, value) => setPage(value)}
-        /> */}
-      </div>
     </div>
   );
 }

@@ -40,6 +40,7 @@ export default function CardArray({
               key={index}
               canEdit={canEdit}
               selectedCollectionsSchema={selectedCollectionsSchema}
+              cardId={card._id}
             />
           );
         })}

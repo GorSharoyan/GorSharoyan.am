@@ -22,14 +22,20 @@ async function fetchData(method, api, body) {
   }
 }
 
-// GET fetch function
+// GET fetch function to get data from the DB trought Backend
 export function getData(api) {
   console.log("get Data is here!! ");
   return fetchData("GET", api);
 }
 
-// POST fetch function
+// POST fetch function to uplaod  data to the DB trought Backend
 export function postData(api, body) {
   console.log("api", api);
   return fetchData("POST", api, body);
+}
+
+//PUT fetch function to change data in the DB trought Backend
+export function editData(api, body) {
+  console.log("api", api);
+  return fetchData("PUT", api, body);
 }
