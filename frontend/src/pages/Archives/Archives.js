@@ -27,8 +27,7 @@ import findParsedCollection, {
 import { Collections, CompareSharp } from "@mui/icons-material";
 
 export default function Archives() {
-  // 1) this hook is dediceted for the nav bar/router in order to get all the names
-  // of the exitiing collections in the Arichves DB.
+  // 1) this hook is dediceted for the nav bar/router in order to get all the name of the exitiing collections in the Arichves DB.
   const [parsedCollectionsNames, setParsedCollectionsNames] = useState([]);
   // 2) this hook is dedicated for the all the collecitons inside the Archives DB.
   const [parsedArchivesArray, setParsedArchivesArray] = useState([]);
@@ -75,6 +74,7 @@ export default function Archives() {
   console.log("parsed archives array:", parsedArchivesArray);
   console.log("selected collection name:", selectedCollectionName);
   console.log("selected collections Schema:", selectedCollectionsSchema);
+
   // console.log("search result is here:", filteredParsedArchivesArray);
 
   return (
@@ -107,9 +107,6 @@ export default function Archives() {
               collections={filteredParsedArchivesArray}
               canEdit={isAuthentificated}
             />
-            <div>
-              <Pagination count={10} />
-            </div>
           </div>
         ) : (
           <div>
@@ -125,6 +122,13 @@ export default function Archives() {
             </div>
           </div>
         )}
+      </div>
+      <div>
+        {/* <Pagination
+          count={5}
+          page={page}
+          onChange={(event, value) => setPage(value)}
+        /> */}
       </div>
     </div>
   );
