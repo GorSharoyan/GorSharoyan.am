@@ -25,9 +25,24 @@ export default function genericController(Model) {
 
   // createModel
   // updateModel
+  const updateItem = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const updatedBody = req.body;
+      console.log(updatedBody);
+
+      const item = await Model.findByIdAndUpdate(id, updatedBody, {
+        new: true
+      });
+      res.status(200).json(updatedBody);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
   // removeModel
   return {
     getAllItems,
-    postItem
+    postItem,
+    updateItem
   };
 }

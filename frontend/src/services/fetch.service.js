@@ -7,14 +7,14 @@ async function fetchData(method, api, body) {
       },
       body: body ? JSON.stringify(body) : null // only send body if provided
     });
-    console.log("Api Response on POST request", response);
+    console.log(`Api Response on ${method} request`, response);
 
     if (!response.ok) {
       throw new Error("Problem with fetching data");
     }
 
     const data = await response.json();
-
+    console.log(response);
     return data;
   } catch (error) {
     console.error(error);
@@ -37,5 +37,6 @@ export function postData(api, body) {
 //PUT fetch function to change data in the DB trought Backend
 export function editData(api, body) {
   console.log("api", api);
+  console.log("edited body", body);
   return fetchData("PUT", api, body);
 }

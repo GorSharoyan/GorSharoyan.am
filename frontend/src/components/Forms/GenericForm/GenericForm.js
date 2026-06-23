@@ -25,7 +25,7 @@ function GenericForm({
           // this part of formik is responsilbe for initial values of the fomrm
           // formik should rescieve and object with all the names that actually should carry the inputs values
           initialValues={inputInitialValues}
-          enableReinitialize={true}
+          enableReinitialize={false}
           // this part of formik is actually responsilbe for the validaton and errors.
           // if there is no errors object selected errors will not be rendered in form if something is missing
           validate={(values) => {
@@ -41,6 +41,7 @@ function GenericForm({
           }}
           onSubmit={async (values, { resetForm }) => {
             await submitFunction(values);
+
             resetForm();
           }}
         >
@@ -71,5 +72,3 @@ function GenericForm({
   }
 }
 export default GenericForm;
-// submitFunction(values);
-// resetForm();

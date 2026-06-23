@@ -8,6 +8,7 @@ import { Archives_API } from "../../config/api";
 
 //UI imports
 import "./Card.css";
+import { Button } from "@mui/material";
 
 //component imports
 import GenericForm from "../Forms/GenericForm/GenericForm";
@@ -22,8 +23,8 @@ export default function Card({
   selectedCollectionsSchema,
   cardId
 }) {
-  const [isEditEnabled, setIsEditEnabled] = useState(false);
-  const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
+  // const [isEditEnabled, setIsEditEnabled] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   //step 1 ) Creating Titles and their Values
   const titles = Object.keys(card);
@@ -39,27 +40,17 @@ export default function Card({
   console.log("Card ID is", cardId);
   console.log("URl to reach DB in case of Edit is", editURL);
 
-  //This function helps to reach the form that will re-redner data in the card we are willing to edit
-  const handleEditClick = () => {
-    setIsEditModeEnabled(true);
-  };
-
-  // this useEffect is responsible for understanding if user has the right to edit the card .
-  useEffect(() => {
-    if (canEdit) {
-      setIsEditEnabled(true);
-    } else {
-      setIsEditEnabled(false);
-    }
-  }, [canEdit]);
-
   return (
     <div className="card-container">
-      {isEditEnabled && !isEditModeEnabled && (
-        <Edit onClick={handleEditClick} />
+      {canEdit && (
+        <Edit
+          onClick={() => {
+            setEditMode(true);
+          }}
+        />
       )}
 
-      {isEditModeEnabled ? (
+      {editMode ? (
         <div>
           <p>
             Edit My
@@ -71,9 +62,15 @@ export default function Card({
             inputInitialValues={card}
             formEntries={selectedCollectionsSchema}
             submitFunction={(values) => {
+              console.log("edit URL is ", editURL);
               editData(editURL, values);
+              setEditMode(false);
             }}
-            button={<button type="submit">Submit</button>}
+            button={
+              <Button variant="contained" color="primary" type="submit">
+                Submit
+              </Button>
+            }
           />
         </div>
       ) : (
