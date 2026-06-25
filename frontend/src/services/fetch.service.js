@@ -1,13 +1,20 @@
 async function fetchData(method, api, body) {
   try {
-    const response = await fetch(api, {
-      method: method,
+    const options = {
+      method,
       headers: {
         "Content-Type": "application/json"
-      },
-      body: body ? JSON.stringify(body) : null // only send body if provided
-    });
-    console.log(`Api Response on ${method} request`, response);
+      }
+    };
+
+    // only attach body when needed
+    if (body && method !== "GET" && method !== "DELETE") {
+      options.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(api, options);
+
+    console.log(`API Response on ${method}`, response);
 
     if (!response.ok) {
       throw new Error("Problem with fetching data");
@@ -39,4 +46,11 @@ export function editData(api, body) {
   console.log("api", api);
   console.log("edited body", body);
   return fetchData("PUT", api, body);
+}
+//Delete fetch function to delete data in the DB trhought Backend
+
+export function deleteData(api) {
+  console.log("This is API rescived by Delete method in fetch service", api);
+  console.log("This is body/id rescived by delete mthod in fetch service ");
+  return fetchData("DELETE", api);
 }

@@ -9,12 +9,13 @@ import { Archives_API } from "../../config/api";
 //UI imports
 import "./Card.css";
 import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 //component imports
 import GenericForm from "../Forms/GenericForm/GenericForm";
 
 //service import
-import { editData } from "../../services/fetch.service";
+import { editData, deleteData } from "../../services/fetch.service";
 
 export default function Card({
   card,
@@ -30,7 +31,7 @@ export default function Card({
   const titles = Object.keys(card);
   const values = Object.values(card);
 
-  const editURL = Archives_API + "/" + selectedCollectionName + "/" + cardId;
+  const cardURL = Archives_API + "/" + selectedCollectionName + "/" + cardId;
 
   //Debuggin logs :
 
@@ -38,16 +39,28 @@ export default function Card({
   console.log("Schema of the parent component", selectedCollectionsSchema);
   console.log("Card rescived the name of a collection", selectedCollectionName);
   console.log("Card ID is", cardId);
-  console.log("URl to reach DB in case of Edit is", editURL);
+  console.log("URl to reach DB in case of Edit is", cardURL);
 
   return (
     <div className="card-container">
       {canEdit && (
-        <Edit
-          onClick={() => {
-            setEditMode(true);
-          }}
-        />
+        <div>
+          <div>
+            <Edit
+              onClick={() => {
+                setEditMode(!editMode);
+              }}
+            />
+          </div>
+          <div>
+            <DeleteIcon
+              onClick={() => {
+                deleteData(cardURL);
+                setEditMode(!editMode);
+              }}
+            />
+          </div>
+        </div>
       )}
 
       {editMode ? (
@@ -62,8 +75,8 @@ export default function Card({
             inputInitialValues={card}
             formEntries={selectedCollectionsSchema}
             submitFunction={(values) => {
-              console.log("edit URL is ", editURL);
-              editData(editURL, values);
+              console.log("edit URL is ", cardURL);
+              editData(cardURL, values);
               setEditMode(false);
             }}
             button={
