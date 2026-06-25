@@ -42,6 +42,8 @@ export default function Archives() {
   // 6) this hook is dedicated to create an array that is already filetered according to searchBars results and is ready for render
   const [filteredParsedArchivesArray, setfilteredParsedArchivesArray] =
     useState([]);
+  //7) this hook is dedicated to restar CardArray and refetch data after some changes happen in the single element and we need to see the updated list
+  const [triggerArrayReload, setTriggerArrayReload] = useState();
 
   useEffect(() => {
     //1) This funcion is used to get all the names of all the collections in the Archives DB
@@ -67,7 +69,7 @@ export default function Archives() {
 
     parseFetchedCollectionNames();
     parseFetchedCollections();
-  }, [selectedCollectionName]);
+  }, [selectedCollectionName, triggerArrayReload]);
 
   //Debugging logs
   console.log("collection names:", parsedCollectionsNames);
@@ -106,6 +108,8 @@ export default function Archives() {
               selectedCollectionsSchema={selectedCollectionsSchema}
               collections={filteredParsedArchivesArray}
               canEdit={isAuthentificated}
+              arrayReloadLogic={setTriggerArrayReload}
+              arrayReloadState={triggerArrayReload}
             />
           </div>
         ) : (

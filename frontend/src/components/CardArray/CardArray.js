@@ -13,7 +13,9 @@ export default function CardArray({
   collections,
   canEdit,
   selectedCollectionName,
-  selectedCollectionsSchema
+  selectedCollectionsSchema,
+  arrayReloadLogic,
+  arrayReloadState
 }) {
   //this hook is dedicated for pagination components usage
   const [page, setPage] = useState(1);
@@ -41,6 +43,8 @@ export default function CardArray({
               canEdit={canEdit}
               selectedCollectionsSchema={selectedCollectionsSchema}
               cardId={card._id}
+              arrayReloadLogic={arrayReloadLogic}
+              arrayReloadState={arrayReloadState}
             />
           );
         })}

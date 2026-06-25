@@ -22,7 +22,9 @@ export default function Card({
   canEdit,
   selectedCollectionName,
   selectedCollectionsSchema,
-  cardId
+  cardId,
+  arrayReloadLogic,
+  arrayReloadState
 }) {
   // const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -54,9 +56,9 @@ export default function Card({
           </div>
           <div>
             <DeleteIcon
-              onClick={() => {
-                deleteData(cardURL);
-                setEditMode(!editMode);
+              onClick={async () => {
+                await deleteData(cardURL);
+                await arrayReloadLogic(!arrayReloadState);
               }}
             />
           </div>
