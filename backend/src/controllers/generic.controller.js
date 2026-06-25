@@ -1,5 +1,6 @@
 export default function genericController(Model) {
   //getAllModels Syntax
+  //this syntax is dedicated to get all the data form the selected collection in the DB
   const getAllItems = async (req, res) => {
     try {
       const items = await Model.find();
@@ -23,7 +24,6 @@ export default function genericController(Model) {
     }
   };
 
-  // createModel
   // updateModel
   const updateItem = async (req, res) => {
     try {
@@ -39,10 +39,30 @@ export default function genericController(Model) {
       res.status(500).json({ message: error.message });
     }
   };
+
   // removeModel
+  const removeItem = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const deletedItem = await Model.findByIdAndDelete(id);
+      if (!deletedItem) {
+        return res.status(404).json({
+          message: "Item Not Found"
+        });
+      }
+
+      res.status(200).json({
+        message: "Item deleted successfully",
+        Item: deletedItem
+      });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
   return {
     getAllItems,
     postItem,
-    updateItem
+    updateItem,
+    removeItem
   };
 }

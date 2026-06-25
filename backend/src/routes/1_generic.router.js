@@ -15,6 +15,7 @@ const genericRouter = (modelsName, model) => {
   router.get("/", controller.getAllItems);
   router.post("/", controller.postItem);
   router.put("/:id", controller.updateItem);
+  router.delete("/:id", controller.removeItem);
 
   console.log("Generic Router Works!!");
 
