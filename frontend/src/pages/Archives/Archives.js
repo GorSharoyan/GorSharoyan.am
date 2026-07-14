@@ -100,12 +100,16 @@ export default function Archives() {
           </h3>
         </div>
         <div>
-          <AddItem
-            itemName={selectedCollectionName.slice(
-              0,
-              selectedCollectionName.length - 1
-            )}
-          />
+          {useAuth ? (
+            <AddItem
+              itemName={selectedCollectionName.slice(
+                0,
+                selectedCollectionName.length - 1
+              )}
+            />
+          ) : (
+            <div></div>
+          )}
         </div>
         {filteredParsedArchivesArray.length > 0 ? (
           <div>

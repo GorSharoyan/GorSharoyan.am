@@ -12,6 +12,7 @@ export default function SearchBar({
 }) {
   const [searchedItem, setSearchedItem] = useState("");
   const [searchResult, setSearchResult] = useState("");
+  const [searchTriggered, setsearhTriggered] = useState(false);
 
   //debugging log
   console.log("search bar rescived this directory name", arraytoFilterName);
@@ -51,6 +52,15 @@ export default function SearchBar({
     }
   };
 
+  // This useEffect was added in order to have a constant working mechanism/logic to have clear result <div/>
+  //after input is actually empty
+
+  useEffect(() => {
+    if (searchedItem.trim() === "") {
+      setSearchResult(false);
+    }
+  }, [searchedItem]);
+
   return (
     <div>
       <TextField
@@ -59,15 +69,25 @@ export default function SearchBar({
         variant="outlined"
         value={searchedItem}
         onChange={(e) => {
+          console.log(e.target.value);
           setSearchedItem(e.target.value);
+          setsearhTriggered(true);
           handleSearch(e.target.value);
         }}
       />
-      {searchResult == false ? (
-        <h2>No {arraytoFilterName.slice(0, -1)} found</h2>
-      ) : (
-        <h2> {arraytoFilterName.slice(0, -1)} found</h2>
-      )}
+      <div>
+        {searchTriggered ? (
+          <div>
+            {searchResult == false ? (
+              <h2>No {arraytoFilterName.slice(0, -1)} found</h2>
+            ) : (
+              <h2> {arraytoFilterName.slice(0, -1)} found</h2>
+            )}
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 }
