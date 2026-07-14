@@ -1,0 +1,15 @@
+.fab-wrapper{
+  width: 150px;   
+  height: 150px;   
+  padding: 5px;
+  border: 10px solid #ccc;
+  border-radius: 10px;
+  font-size: 12px; 
+  display: flex;
+  justify-content: center;
+   align-items: center; 
+}
+.add-icon {
+    position: center;
+    size: 500px;
+} 

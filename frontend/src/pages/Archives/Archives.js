@@ -1,19 +1,15 @@
 //React imports
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
 
 // config imports
 import { SHCEMAS_API } from "../../config/api";
 import { Archives_API } from "../../config/api";
 
-//UI imports
-import Pagination from "@mui/material/Pagination";
-
 // component imports
 import CardArray from "../../components/CardArray/CardArray";
 import ArchivesNavBar from "../../components/ArchivesNavBar/ArchivesNavBar.js";
 import SearchBar from "../../components/SearchBar/SearchBar.js";
-
+import AddItem from "../../components/AddItem/AddItem.js";
 // services imports
 import { getData } from "../../services/fetch.service";
 
@@ -96,13 +92,23 @@ export default function Archives() {
         />
       </div>
       <div>
+        <div>
+          <h3>
+            {`Check My ${selectedCollectionName
+              .charAt(0)
+              .toUpperCase()}${selectedCollectionName.slice(1)}`}
+          </h3>
+        </div>
+        <div>
+          <AddItem
+            itemName={selectedCollectionName.slice(
+              0,
+              selectedCollectionName.length - 1
+            )}
+          />
+        </div>
         {filteredParsedArchivesArray.length > 0 ? (
           <div>
-            <h3>
-              {`Check My ${selectedCollectionName
-                .charAt(0)
-                .toUpperCase()}${selectedCollectionName.slice(1)}`}
-            </h3>
             <CardArray
               selectedCollectionName={selectedCollectionName}
               selectedCollectionsSchema={selectedCollectionsSchema}
@@ -119,11 +125,6 @@ export default function Archives() {
                 .charAt(0)
                 .toUpperCase()}${selectedCollectionName.slice(1)} to display`}
             </h3>
-
-            <div>
-              Add Books Here must be the form to add additional books Most
-              probably i will refactor forms Archives DB and it will appear here
-            </div>
           </div>
         )}
       </div>
