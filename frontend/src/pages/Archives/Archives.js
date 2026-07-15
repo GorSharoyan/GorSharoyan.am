@@ -1,5 +1,6 @@
 //React imports
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // config imports
 import { SHCEMAS_API } from "../../config/api";
@@ -40,6 +41,8 @@ export default function Archives() {
     useState([]);
   //7) this hook is dedicated to restar CardArray and refetch data after some changes happen in the single element and we need to see the updated list
   const [triggerArrayReload, setTriggerArrayReload] = useState();
+  //8) this hook is used to handle navigation to the add-item form that will be responsible for adding additional items to this or any other collection
+  const navigate = useNavigate();
 
   useEffect(() => {
     //1) This funcion is used to get all the names of all the collections in the Archives DB
@@ -106,6 +109,10 @@ export default function Archives() {
                 0,
                 selectedCollectionName.length - 1
               )}
+              onClick={() => {
+                navigate(`/admindashboard/add-${selectedCollectionName}`);
+                console.log("click is activated");
+              }}
             />
           ) : (
             <div></div>

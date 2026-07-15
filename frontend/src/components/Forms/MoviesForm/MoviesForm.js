@@ -19,6 +19,14 @@ export default function MoviesForm() {
   const moviesFormIntialValues = createFormsInitialValuesObject(
     moviesFormEntriesArray
   );
+  console.log(
+    "This is movies form initial values array",
+    moviesFormIntialValues
+  );
+  console.log(
+    "This is movies form entries valyes array",
+    moviesFormEntriesArray
+  );
 
   return (
     <div>

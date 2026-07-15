@@ -19,13 +19,21 @@ export default function MusicForm() {
   const musicFormInitialValues = createFormsInitialValuesObject(
     musicFormEntriesArray
   );
+  console.log(
+    "This is musics form initial values array",
+    musicFormInitialValues
+  );
+  console.log(
+    "This is musics form entries valyes array",
+    musicFormEntriesArray
+  );
 
   return (
     <div>
-      This is my Movies Form
+      This is my Musics Form
       <GenericForm
-        inputInitalValues={musicFormInitialValues}
         formEntries={musicFormEntriesArray}
+        inputInitialValues={musicFormInitialValues}
         submitFunction={postMusics}
         button={
           <Button variant="contained" color="primary" type="submit">
