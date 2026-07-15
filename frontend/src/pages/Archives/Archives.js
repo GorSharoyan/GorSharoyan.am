@@ -92,6 +92,7 @@ export default function Archives() {
           arraytoFilterName={selectedCollectionName}
           arraytoFilter={parsedArchivesArray}
           filteredArray={setfilteredParsedArchivesArray}
+          searchByCriterias={selectedCollectionsSchema}
         />
       </div>
       <div>
