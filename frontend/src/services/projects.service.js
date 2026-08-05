@@ -14,3 +14,13 @@ export function getAllProjects(Projects_API) {
 export function postProject() {
   return postData();
 }
+
+//This function is dedicated to delete an existiing project from the DB (only with Admin lvl priviledges)
+export function deleteProject() {
+  return deleteData();
+}
+//This funciton is dedicated to edit an existing project in the DB(only with Admin lvl privildeges)
+
+export function editProjectInfo() {
+  return editData();
+}

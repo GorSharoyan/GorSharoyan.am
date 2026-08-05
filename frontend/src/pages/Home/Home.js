@@ -9,12 +9,15 @@ import Projects from "../../components/Projects/Projects";
 import CVBar from "../../components/CVBar/CVBar";
 
 // services import
-import { getAllProjects } from "../../services/projects.service";
 import { getData } from "../../services/fetch.service";
 import { Projects_API } from "../../config/api";
 
+//custom hooks
+import { useAuth } from "../../context/AuthProvider";
+
 export default function Home() {
   const [projects, setProjects] = useState([]);
+  const { isAuthentificated } = useAuth();
 
   useEffect(() => {
     async function parseAllProjects() {
@@ -32,7 +35,7 @@ export default function Home() {
       <HeroSection />
       <SocialMediaTab />
       <ContactsBar />
-      <Projects />
+      <Projects projects={projects} canEdit={isAuthentificated} />
       <CVBar />
       <p>This is my HomePage</p>
     </div>

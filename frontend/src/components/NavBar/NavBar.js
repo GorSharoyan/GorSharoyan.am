@@ -10,7 +10,7 @@ export default function NavBar() {
         <Link to="/">Homepage</Link>
       </li>
       <li>
-        <Link to="/experience">My Experience</Link>
+        <Link to="/tech-talk">Tech Talk</Link>
       </li>
       <li>
         <Link to="/hobbies">My Hobbies</Link>
