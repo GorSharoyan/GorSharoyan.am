@@ -1,48 +1,35 @@
 import React from "react";
+import { useState } from "react";
 
 //UI
 import { Avatar, Box } from "@mui/material";
+import { Edit } from "@mui/icons-material";
 
-export default function HeroSection() {
+//component imports
+import HeroView from "./HeroView";
+import HeroForm from "./HeroForm";
+
+export default function HeroSection({ canEdit, heroSectionData }) {
+  const [editMode, setEditMode] = useState(true);
+
   return (
-    <Box
-      sx={{
-        width: 400,
-        minHeight: 200,
-        borderRadius: 5,
-        border: "1px solid",
-        borderColor: "divider",
-        p: 4,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center"
-      }}
-    >
+    <div>
       <div>
-        <Avatar
-          src="https://example.com/profile.jpg"
-          sx={{
-            width: 100,
-            height: 100
-          }}
-        />
+        {canEdit ? (
+          <div>
+            <Edit
+              onClick={() => {
+                setEditMode(!editMode);
+              }}
+            />
+          </div>
+        ) : (
+          <div>
+            <HeroView />
+          </div>
+        )}
       </div>
-      <Box
-        sx={{
-          width: 400,
-          minHeight: 200,
-          borderRadius: 5,
-          border: "1px solid",
-          borderColor: "divider",
-          p: 4,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center"
-        }}
-      >
-        adadadadadadadaadadadadadadadaadadasdadadasdadadadadad
-      </Box>
-      <div></div>
-    </Box>
+      <div>{editMode ? <HeroForm /> : <HeroView />}</div>
+    </div>
   );
 }

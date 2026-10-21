@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div>
-      <HeroSection />
+      <HeroSection canEdit={isAuthentificated} />
       <SocialMediaTab />
       <ContactsBar />
       <Projects projects={projects} canEdit={isAuthentificated} />
