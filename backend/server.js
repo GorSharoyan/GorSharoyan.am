@@ -19,6 +19,7 @@ import connectToDb from "./src/config/database.js";
 import connectToArchivesDb from "./src/config/database.js";
 import connectToAdminsDb from "./src/config/database.js";
 import connectToProjectsDb from "./src/config/database.js";
+// import connectToPersonalDataDb from "./src/config/database.js";
 
 //utils/services imports
 import generateSchemas from "./src/utils/schema-generator.js";
@@ -40,6 +41,7 @@ connectToDb();
 connectToArchivesDb();
 connectToAdminsDb();
 connectToProjectsDb();
+// connectToPersonalDataDb();
 
 // Calling/using the Routes
 app.use("/Admin/admins", adminRouter);
