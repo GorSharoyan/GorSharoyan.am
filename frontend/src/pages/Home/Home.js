@@ -33,8 +33,6 @@ export default function Home() {
   return (
     <div>
       <HeroSection canEdit={isAuthentificated} />
-      <SocialMediaTab />
-      <ContactsBar />
       <Projects projects={projects} canEdit={isAuthentificated} />
       <CVBar />
       <p>This is my HomePage</p>
