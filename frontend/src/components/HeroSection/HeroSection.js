@@ -9,9 +9,9 @@ import { Edit } from "@mui/icons-material";
 import HeroView from "../Heroview/HeroView";
 import HeroForm from "../Forms/HeroForm/HeroForm";
 
-export default function HeroSection({ canEdit, heroSectionData }) {
+export default function HeroSection({ canEdit, personalData }) {
   const [editMode, setEditMode] = useState(false);
-
+  console.log("herosection", personalData);
   return (
     <Box
       sx={{
@@ -41,7 +41,9 @@ export default function HeroSection({ canEdit, heroSectionData }) {
           <></>
         )}
       </div>
-      <div>{editMode ? <HeroForm /> : <HeroView />}</div>
+      <div>
+        {editMode ? <HeroForm /> : <HeroView personalData={personalData} />}
+      </div>
     </Box>
   );
 }

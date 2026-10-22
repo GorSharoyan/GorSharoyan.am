@@ -3,7 +3,8 @@ import React from "react";
 //UI imports :
 import { Avatar, Box } from "@mui/material";
 
-export default function HeroView({ heroData }) {
+export default function HeroView({ personalData }) {
+  console.log("heroview", personalData);
   return (
     <div>
       <div>
@@ -29,7 +30,7 @@ export default function HeroView({ heroData }) {
           padding: 1
         }}
       >
-        This is a place for a short bio
+        {personalData[0].bio}
       </Box>
     </div>
   );

@@ -92,6 +92,6 @@ export default async function generateSchemas() {
   } catch (err) {
     console.error("Error generating schemas:", err);
   } finally {
-    await client.close();
+    await Promise.all([clientArchives.close(), clientSchemas.close()]);
   }
 }

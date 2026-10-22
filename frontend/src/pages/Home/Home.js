@@ -10,13 +10,14 @@ import CVBar from "../../components/CVBar/CVBar";
 
 // services import
 import { getData } from "../../services/fetch.service";
-import { Projects_API } from "../../config/api";
+import { Projects_API, PersonalData_API } from "../../config/api";
 
 //custom hooks
 import { useAuth } from "../../context/AuthProvider";
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
+  const [personalData, setPersonalData] = useState([]);
   const { isAuthentificated } = useAuth();
 
   useEffect(() => {
@@ -24,18 +25,23 @@ export default function Home() {
       const parsedProjects = await getData(Projects_API);
       setProjects(parsedProjects);
     }
+    async function parsePersonalData() {
+      const parsedPersonalData = await getData(PersonalData_API);
+      setPersonalData(parsedPersonalData);
+    }
     parseAllProjects();
+    parsePersonalData();
   }, []);
 
   // debugging log
   console.log("Projects have been summoned", projects);
+  console.log("Personal data has been parsed", personalData);
 
   return (
     <div>
-      <HeroSection canEdit={isAuthentificated} />
+      <HeroSection canEdit={isAuthentificated} personalData={personalData} />
       <Projects projects={projects} canEdit={isAuthentificated} />
       <CVBar />
-      <p>This is my HomePage</p>
     </div>
   );
 }

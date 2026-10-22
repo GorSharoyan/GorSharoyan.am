@@ -43,17 +43,3 @@ export const connectToPersonalDataDb = mongoose.createConnection(
   mongoDB_Personal_Data_URI
 );
 
-const mongoUris = {
-  mongoDB_URI,
-  mongoDB_Archives_URI,
-  mongoDB_Admins_URI,
-  mongoDB_Schemas_URI,
-  mongoDB_Projects_URI,
-  mongoDB_Personal_Data_URI
-};
-
-export function debug() {
-  for (const [name, uri] of Object.entries(mongoUris)) {
-    console.log(`${name}: ${uri ? "DEFINED" : "UNDEFINED"}`);
-  }
-}

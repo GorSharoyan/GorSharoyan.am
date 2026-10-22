@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-import { Model } from "mongoose";
 
 //database imports
-import { connectToPersonalDataDb } from "../../config/database";
+import { connectToPersonalDataDb } from "../../config/database.js";
 
-const PersonalDataSchema = new mongoose.Schema({
+const personalDataSchema = new mongoose.Schema({
   name: { type: String, required: true },
   surname: { type: String, required: true },
   slogan: { type: String, required: true },
@@ -13,5 +12,6 @@ const PersonalDataSchema = new mongoose.Schema({
 
 const PersonalData = connectToPersonalDataDb.model(
   "PersonalData",
-  PersonalDataSchema
+  personalDataSchema
 );
+export default PersonalData;
