@@ -9,7 +9,7 @@ import "./Header.css";
 export default function Header() {
   return (
     <header className="header">
-      <h1>This is the place for the header</h1>
+      <h4>Hi There,Welcome to my world</h4>
       <NavBar />
     </header>
   );

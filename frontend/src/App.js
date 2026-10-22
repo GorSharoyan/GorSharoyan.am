@@ -8,9 +8,11 @@ import Router from "./router/router";
 
 export default function App() {
   return (
-    <div>
+    <div className="App">
       <Header />
-      <Router />
+      <main>
+        <Router />
+      </main>
       <Footer />
     </div>
   );
