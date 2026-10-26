@@ -30,7 +30,7 @@ export default function HeroView({ personalData }) {
           padding: 1
         }}
       >
-        {personalData[0].bio}
+        {/* {personalData[0].bio} */}
       </Box>
     </div>
   );

@@ -25,6 +25,9 @@ export function collectSchemas(inputArray) {
   return schemas;
 }
 
+// This Function is used in order to create Object for initial values fo r Archives DB as it is parsed by a functuion in bakcend and its
+// values are being stored in a separate DB
+
 export function createFormsInitialValuesObject(input) {
   console.log("Object Creator Functions input is", input);
   const result = {};
@@ -34,4 +37,20 @@ export function createFormsInitialValuesObject(input) {
   });
   console.log("Output Result Object is ", result);
   return result;
+}
+
+//As a spearate parser util I have decided to create a funciton that parses personal Data or any similair collections
+
+export function parseToObjecEntries(inputObject) {
+  console.log("inputObject", inputObject[0]);
+  const entriesArray = Object.entries(inputObject);
+  console.log("parse To Object Entries", entriesArray);
+
+  const formEntriesObject = {};
+
+  for (let i = 0; i < entriesArray.length; i++) {
+    formEntriesObject[entriesArray[i][0]] = "";
+  }
+  console.log("formEntriesObject", formEntriesObject);
+  return formEntriesObject;
 }
