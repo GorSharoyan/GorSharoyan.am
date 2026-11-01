@@ -35,6 +35,10 @@ export function getData(api) {
   return fetchData("GET", api);
 }
 
+export function getDataById(api, id) {
+  return fetchData("GET", `${api}/${id}`);
+}
+
 // POST fetch function to uplaod  data to the DB trought Backend
 export function postData(api, body) {
   console.log("api", api);
