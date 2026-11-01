@@ -10,6 +10,22 @@ export default function genericController(Model) {
     }
   };
 
+  const getByID = async (req, res) => {
+    try {
+      const itemID = req.params.id;
+
+      const itemById = await Model.findById(itemID);
+
+      if (!itemById) {
+        return res.status(404).json({ message: "Item not found" });
+      }
+
+      return res.status(200).json(itemById);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  };
+
   //postItem Sytnax
   //This sytnax is dedicated to get data from Frontend and add it to DB
   const postItem = async (req, res) => {
