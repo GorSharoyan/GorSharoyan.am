@@ -15,7 +15,7 @@ import { parseToObjecEntries } from "../../utils/formUtils";
 export default function HeroSection({ canEdit, personalData }) {
   const [editMode, setEditMode] = useState(false);
   const heroFormInputInitialValues = parseToObjecEntries(personalData);
-  console.log("herosection", personalData);
+  console.log("herosections Personal Data", personalData);
   console.log("heroForm input initial values", heroFormInputInitialValues);
   return (
     <Box

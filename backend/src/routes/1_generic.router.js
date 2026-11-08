@@ -5,14 +5,25 @@ import express from "express";
 import genericController from "../controllers/generic.controller.js";
 
 // GetAll data Generic Router
-const genericRouter = (modelsName, model) => {
+const genericRouter = (modelsName, model, options = {}) => {
   const router = express.Router();
-  const controller = genericController(model);
+  const controller = genericController(model, options);
 
   //debug
-  console.log("Gerneric Rotuer Gets Model", modelsName, model);
+  console.log("Gerneric Rotuer Gets Model", modelsName, model, options);
 
-  router.get("/", controller.getAllItems);
+  // This is a very important piece of code
+  // Here is all about choosing a route based on information that you get from the generic cotnroller
+
+  if (controller.getAllItems) {
+    router.get("/", controller.getAllItems);
+  }
+
+  if (controller.getSingelItem) {
+    router.get("/", controller.getSingelItem);
+  }
+
+  router.get("/:id", controller.getById);
   router.post("/", controller.postItem);
   router.put("/:id", controller.updateItem);
   router.delete("/:id", controller.removeItem);

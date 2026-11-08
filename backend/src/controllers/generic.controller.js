@@ -1,16 +1,55 @@
-export default function genericController(Model) {
+import { model } from "mongoose";
+
+export default function genericController(Model, options = {}) {
+  console.log("🔥 GENERIC CONTROLLER INITIALIZED");
+  console.log("🔥 Generic Controller Rescived This options ", options);
+
+  // This object is dedicated in order to create a swithc between getAllItems and get single item
+  //If you look coler to the syntax you wil lsee that in this case swithc helps to select one single option
+  //thus in this case it is possilbe to select an option that either send an array to frointend
+  //or send a single object to the frontend
+  //The key factor here is that Model.find() Always returns an array regardless of the quantity of elements inside
+  //If you have only one object in the DB it will still return Array Thus you need to use Model.findOne()
+  //Or you should use Array methods in the frontned whcih seems not right
+
+  const { getAll = true, getOne = false } = options;
+
+  // at this case we use a single if operatior to manifest the logic above
+  //#1 :
+
   //getAllModels Syntax
   //this syntax is dedicated to get all the data form the selected collection in the DB
-  const getAllItems = async (req, res) => {
-    try {
-      const items = await Model.find();
-      return res.json(items);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  };
+  const getAllItems = getAll
+    ? async (req, res) => {
+        try {
+          const items = await Model.find();
+          console.log("Get All items is here");
+          return res.json(items);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      }
+    : undefined;
 
-  const getByID = async (req, res) => {
+  //#2 :
+  const getSingelItem = getOne
+    ? async (req, res) => {
+        try {
+          const singeItem = await Model.findOne();
+          console.log("GetOne is here");
+          return res.json(singeItem);
+          if (!singeItem) {
+            return res.status(404).json({ message: "Item not found" });
+          }
+        } catch (error) {
+          return res.status(500).json({ message: error.message });
+        }
+      }
+    : undefined;
+
+  //Get Item by Id sytnax
+  //This is a dedecoated syntax to fins odmething in the backedn by usinf an ide of and object
+  const getById = async (req, res) => {
     try {
       const itemID = req.params.id;
 
@@ -77,6 +116,8 @@ export default function genericController(Model) {
   };
   return {
     getAllItems,
+    getById,
+    getSingelItem,
     postItem,
     updateItem,
     removeItem

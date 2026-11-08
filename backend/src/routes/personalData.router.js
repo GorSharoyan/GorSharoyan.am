@@ -6,6 +6,9 @@ import PersonalData from "../models/PersonalData/PersonalData.js";
 //generic imports
 import genericRouter from "./1_generic.router.js";
 
-const personalDataRouter = genericRouter("personalData", PersonalData);
+const personalDataRouter = genericRouter("personalData", PersonalData, {
+  getAll: false,
+  getOne: true
+});
 
 export default personalDataRouter;
