@@ -30,7 +30,14 @@ export default function HeroView({ personalData }) {
           padding: 1
         }}
       >
-        {/* {personalData[0].bio} */}
+        <h1>Hello Folks ! </h1>
+        <p>
+          My name is {personalData.name} {personalData.surname}
+        </p>
+        <p>Welcome to my world</p>
+        <p>Here I share my ideas and speak about my Tech Stuff </p>
+
+        {personalData.bio}
       </Box>
     </div>
   );

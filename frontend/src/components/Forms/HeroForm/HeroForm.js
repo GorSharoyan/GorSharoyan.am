@@ -9,16 +9,28 @@ import GenericForm from "../GenericForm/GenericForm";
 //services imports
 import postPersonalData from "../../../services/personalData.service";
 
-export default function HeroForm(heroFormEntries, heroFormInputInitialValues) {
+export default function HeroForm({
+  heroFormEntries,
+  heroFormInputInitialValues
+}) {
+  const heroFormEntriesArray = Object.keys(heroFormInputInitialValues);
+  const heroFormInputInitialValuesArray = Object.keys(
+    heroFormInputInitialValues
+  );
+
+  //Logs
+  console.log("heroForm Entries", heroFormEntries);
+  console.log("heroForm Entries Array", heroFormEntriesArray);
+
   return (
     <div>
       <GenericForm
-        formEntries={heroFormEntries}
-        inputInitialValues={heroFormInputInitialValues}
+        formEntries={heroFormEntriesArray}
+        inputInitialValues={heroFormInputInitialValuesArray}
         submitFunction={postPersonalData}
         button={
           <Button variant="contained" color="primary" type="submit">
-            Add Movie
+            Add Info
           </Button>
         }
       />

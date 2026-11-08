@@ -42,7 +42,6 @@ export function createFormsInitialValuesObject(input) {
 //As a spearate parser util I have decided to create a funciton that parses personal Data or any similair collections
 
 export function parseToObjecEntries(inputObject) {
-  
   console.log("inputObject", inputObject[0]);
   const entriesArray = Object.entries(inputObject);
   console.log("parse To Object Entries", entriesArray);
