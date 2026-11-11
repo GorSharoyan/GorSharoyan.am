@@ -13,10 +13,12 @@ export default function HeroForm({
   heroFormEntries,
   heroFormInputInitialValues
 }) {
-  const heroFormEntriesArray = Object.keys(heroFormInputInitialValues);
+  // const heroFormEntriesArray = Object.keys(heroFormInputInitialValues);
   const heroFormInputInitialValuesArray = Object.keys(
     heroFormInputInitialValues
   );
+
+  const heroFormEntriesArray = [heroFormEntries];
 
   //Logs
   console.log("heroForm Entries", heroFormEntries);
@@ -26,7 +28,7 @@ export default function HeroForm({
     <div>
       <GenericForm
         formEntries={heroFormEntriesArray}
-        inputInitialValues={heroFormInputInitialValuesArray}
+        inputInitialValues={heroFormEntriesArray}
         submitFunction={postPersonalData}
         button={
           <Button variant="contained" color="primary" type="submit">

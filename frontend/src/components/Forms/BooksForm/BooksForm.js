@@ -21,7 +21,7 @@ export default function BooksForm() {
     booksFormEntriesArray
   );
   console.log("Books Form initial Values are", booksFormInitialValues);
-  let a = booksFormInitialValues;
+  console.log("Books Form Entries array is", booksFormEntriesArray);
   return (
     <div>
       This is my Books Form

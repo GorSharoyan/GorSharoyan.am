@@ -9,6 +9,8 @@ import { fileURLToPath } from "url";
 //Enivornment variables import
 const mongoDBArchives_URI = process.env.mongoDB_Archives_URI;
 const mongoDBSchemas_URI = process.env.mongoDB_Schemas_URI;
+const mongoDBPersonal_Data_URI = process.env.mongoDB_Personal_Data_URI;
+const mongoDBProjects_URI = process.env.mongoDB_Projects_URI;
 
 // Load environment variables
 dotenv.config();
@@ -18,30 +20,58 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Path to models folder
-const modelsPath = path.join(__dirname, "../models/Archives");
+const modelsPath = path.join(__dirname, "../models");
 
 export default async function generateSchemas() {
   // Code below is need to to connect to the MongoDB and establish a link to it
 
-  // Step 1 : At this point we creat clients for Archives and Schemas DBs
+  //Step 1 : At this point we creat clients for All the DBs and Collections and Schemas DBs
 
   //Step 1.1 : At this point we connect to ArchivesDB
   const clientArchives = new MongoClient(mongoDBArchives_URI);
-
-  //Step 1.2 : At this point we connect to SchemasDB
+  //Step 1.2 : At this point we connect to PersonalDataDB
+  const clientPersonalData = new MongoClient(mongoDBPersonal_Data_URI);
+  //Step 1.3 : At this point we connect to ProjectDB
+  const cleintProjectstData = new MongoClient(mongoDBProjects_URI);
+  //Step 1.4 : At this point we connect to SchemasDB
   const clientSchemas = new MongoClient(mongoDBSchemas_URI);
 
+  //#Step 2 Connecting to the DB
+  //Here we are actully connected to DBsS
   try {
-    //#Step 2 Connecting to the DB
-    //Here we are actully connected to the Db: Archives and Schemas
     await clientArchives.connect();
     await clientSchemas.connect();
+    await clientPersonalData.connect();
+    await cleintProjectstData.connect();
 
-    //#Step 2 Calling the DB
-    //Th this point we gain final access to the Clients DB
-
+    //#Step 3 Calling the DB
+    //At this point we gain final access to the Clients DB
     const dbArchives = clientArchives.db("Archives");
+    const dbPersonalData = clientPersonalData.db("PersonalData");
+    const dbProjects = cleintProjectstData.db("Projects");
     const dbSchemas = clientSchemas.db("Schemas");
+
+    const modelFiles = [];
+
+    // // Iterate through discovered items
+    // for (const file of files) {
+
+    //   const fullPath = path.join(directory, file.name);
+
+    //   // If directory, recursively explore it
+    //   if (file.isDirectory()) {
+
+    //     modelFiles.push(...getModelFiles(fullPath));
+
+    //   }
+
+    //   // If JavaScript file, add it to the results
+    //   else if (file.isFile() && file.name.endsWith(".js")) {
+
+    //     modelFiles.push(fullPath);
+
+    //   }
+    // }
 
     //#Step 3 reading all models from the DB
     // Read all model files
