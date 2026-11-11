@@ -10,6 +10,8 @@ import CVBar from "../../components/CVBar/CVBar";
 
 // services import
 import { getData } from "../../services/fetch.service";
+
+//API Import
 import { Projects_API, PersonalData_API } from "../../config/api";
 
 //custom hooks

@@ -6,6 +6,7 @@ export const Archives_API = `${API_BASE_URL}/Archives`;
 export const Admin_API = `${API_BASE_URL}/Admins`;
 export const Projects_API = `${API_BASE_URL}/Projects/projects`;
 export const PersonalData_API = `${API_BASE_URL}/PersonalData/personaldatas`;
+export const TechTalk_API = `${API_BASE_URL}/TechTalk/techtalks`;
 
 // Sub Collection connection APIS
 export const BOOKS_API = `${Archives_API}/books`;
